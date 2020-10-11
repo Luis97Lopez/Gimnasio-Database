@@ -173,3 +173,12 @@ CREATE TABLE gimnasio.Inscripcion(
 	REFERENCES gimnasio.Cliente(IdCliente)
 
 );
+
+-----------------------------------------------------------------------
+
+CREATE RULE RL_EstadoSuscripcion AS @Estado IN (
+	'Activa','Inactiva'
+)
+
+EXEC sp_bindrule 'RL_EstadoSuscripcion','gimnasio.Suscripcion.Estado'
+
