@@ -93,6 +93,38 @@ namespace Gimnasio
             return v;
         }
 
+        public void boton_inserta()
+        {
+            // Se crea una lista de strings para el metodo inserta
+            List<string> lista = new List<string>();
+            // Se crea el formulario para insertar un nuevo profesor
+            Formulario form_agregar = new Formulario(tabControl_Tablas.SelectedTab.Text);
+            form_agregar.Text = "Insertar " + tabControl_Tablas.SelectedTab.Text;
+            form_agregar.ShowDialog();
+
+            if (form_agregar.band_aceptar) // Si ya se hizo click en aceptar en el formulario
+            {
+                // Añade el nombre de la lista
+                lista.Add(tabControl_Tablas.SelectedTab.Text);
+
+                // Añade a la lista los atributos dependiendo de la tabla
+                switch (lista[0])
+                {
+                    case "Articulo":
+                        // Añade los atributos necesarios
+                        lista.Add(form_agregar.Textbox1.Text);
+                        lista.Add(form_agregar.Textbox2.Text);
+                        lista.Add(form_agregar.Textbox3.Text);
+                        break;
+                }
+
+                inserta(lista);
+                actualiza_grid(tabControl_Tablas.SelectedTab.Text); // Actualiza
+
+                // Limpia y cierra el formulario
+                form_agregar.Dispose();
+            }
+        }
         public void inserta(List<string> tabla)
         {
             // Se abre la conexion con la base de datos
@@ -118,6 +150,59 @@ namespace Gimnasio
             comando.ExecuteNonQuery();
         }
 
+        public void boton_modifica()
+        {
+            // Se crea una lista de strings para el metodo inserta
+            List<string> lista = new List<string>();
+            // Se crea el formulario para insertar un nuevo profesor
+            Formulario form_modificar;
+
+            // Primero checa que la fila entera esté seleccionada (en este caso selectedcells debe de ser 4 contando el id)
+            if (dataGridView_Articulo.SelectedCells.Count == 4)
+            {
+                form_modificar = new Formulario(tabControl_Tablas.SelectedTab.Text);
+                form_modificar.Text = "Modificar " + tabControl_Tablas.SelectedTab.Text;
+
+                // Es modificacion, asi que hay que poner los valores actuales de los atributos (selectedCells[0] es el id)
+                switch (tabControl_Tablas.SelectedTab.Text)
+                {
+                    case "Articulo":
+                        form_modificar.Textbox1.Text = dataGridView_Articulo.SelectedCells[1].Value.ToString();
+                        form_modificar.Textbox2.Text = dataGridView_Articulo.SelectedCells[2].Value.ToString();
+                        form_modificar.Textbox3.Text = dataGridView_Articulo.SelectedCells[3].Value.ToString();
+                        break;
+                }
+                
+                form_modificar.ShowDialog();
+
+                if (form_modificar.band_aceptar) // Si ya se hizo click en aceptar en el formulario
+                {
+                    // Añade el nombre de la lista
+                    lista.Add(tabControl_Tablas.SelectedTab.Text);
+
+                    // Se asignan los valores de los "VALUES" de la consulta con los datos de los textbox
+                    switch (lista[0])
+                    {
+                        case "Articulo":
+                            // Añade los atributos necesarios
+                            lista.Add(form_modificar.Textbox1.Text);
+                            lista.Add(form_modificar.Textbox2.Text);
+                            lista.Add(form_modificar.Textbox3.Text);
+                            break;
+                    }
+
+                    modifica(lista);
+                    actualiza_grid(tabControl_Tablas.SelectedTab.Text); // Actualiza
+
+                    // Limpia y cierra el formulario
+                    form_modificar.Dispose();
+                }
+            }
+            else
+            {
+                MessageBox.Show("ERROR - Toda la fila debe de estar seleccionada.");
+            }
+        }
         public void modifica(List<string> tabla)
         {
             // Se abre la conexion con la base de datos
@@ -170,69 +255,12 @@ namespace Gimnasio
         // ->->->->->->->->->->->->->->->->->-> ARTICULO <-<-<-<-<-<-<-<-<-<-<-<-<-<-<- //
         private void btn_Insertar_Articulo_Click(object sender, EventArgs e)
         {
-            // Se crea una lista de strings para el metodo inserta
-            List<string> lista = new List<string>();
-            // Se crea el formulario para insertar un nuevo profesor
-            Formulario form_agregar = new Formulario(tabPageArticulo.Text);
-            form_agregar.Text = "Insertar " + tabPageArticulo.Text;
-            form_agregar.ShowDialog();
-
-            if (form_agregar.band_aceptar) // Si ya se hizo click en aceptar en el formulario
-            {
-                // Añade el nombre de la lista
-                lista.Add(tabPageArticulo.Text);
-                // Añade los atributos necesarios
-                lista.Add(form_agregar.Textbox1.Text);
-                lista.Add(form_agregar.Textbox2.Text);
-                lista.Add(form_agregar.Textbox3.Text);
-
-                inserta(lista);
-                actualiza_grid(tabPageArticulo.Text); // Actualiza
-
-                // Limpia y cierra el formulario
-                form_agregar.Dispose();
-            }
+            boton_inserta();
         }
 
         private void btn_Modificar_Articulo_Click(object sender, EventArgs e)
         {
-            // Se crea una lista de strings para el metodo inserta
-            List<string> lista = new List<string>();
-            // Se crea el formulario para insertar un nuevo profesor
-            Formulario form_modificar;
-
-            // Primero checa que la fila entera esté seleccionada (en este caso selectedcells debe de ser 4 contando el id)
-            if(dataGridView_Articulo.SelectedCells.Count == 4)
-            {
-                form_modificar = new Formulario(tabPageArticulo.Text);
-                form_modificar.Text = "Modificar " + tabPageArticulo.Text;
-                // Es modificacion, asi que hay que poner los valores actuales de los atributos (selectedCells[0] es el id)
-                form_modificar.Textbox1.Text = dataGridView_Articulo.SelectedCells[1].Value.ToString();
-                form_modificar.Textbox2.Text = dataGridView_Articulo.SelectedCells[2].Value.ToString();
-                form_modificar.Textbox3.Text = dataGridView_Articulo.SelectedCells[3].Value.ToString();
-                form_modificar.ShowDialog();
-
-                if (form_modificar.band_aceptar) // Si ya se hizo click en aceptar en el formulario
-                {
-                    // Añade el nombre de la lista
-                    lista.Add(tabPageArticulo.Text);
-                    // Añade los atributos necesarios
-                    lista.Add(form_modificar.Textbox1.Text);
-                    lista.Add(form_modificar.Textbox2.Text);
-                    lista.Add(form_modificar.Textbox3.Text);
-
-                    modifica(lista);
-                    actualiza_grid(tabPageArticulo.Text); // Actualiza
-
-                    // Limpia y cierra el formulario
-                    form_modificar.Dispose();
-                }
-            }
-            else
-            {
-                MessageBox.Show("ERROR - Toda la fila debe de estar seleccionada.");
-            }
-            
+            boton_modifica();
         }
 
         private void btn_Eliminar_Articulo_Click(object sender, EventArgs e)
@@ -249,5 +277,23 @@ namespace Gimnasio
                 }
             }
         }
+
+        // ->->->->->->->->->->->->->->->->->-> HORARIO <-<-<-<-<-<-<-<-<-<-<-<-<-<-<- //
+
+        private void btn_Insertar_Horario_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Modificar_Horario_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Eliminar_Horario_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

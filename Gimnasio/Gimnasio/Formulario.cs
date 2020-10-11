@@ -77,6 +77,29 @@ namespace Gimnasio
                     this.Height = 130;
 
                     break;
+
+                case "Horario":
+                    label1.Text = "Hora inicio (HH:MM:SS)";
+                    label1.Location = new Point(10, 10);
+                    label1.Show();
+                    textBox1.Location = new Point(10, 30);
+                    textBox1.Show();
+
+                    label2.Text = "Hora fin (HH:MM:SS)";
+                    label2.Location = new Point(130, 10);
+                    label2.Show();
+                    textBox2.Location = new Point(130, 30);
+                    textBox2.Show();
+
+                    // Posiciona los botones en las orillas de la ventana, a la izquierda aceptar y a la derecha cancelar
+                    button_Aceptar.Location = new Point(10, 50 + 10);
+                    button_Cancelar.Location = new Point(130 + 20, 50 + 10);
+
+                    // Redimensiona toda la ventana
+                    this.Width = 380;
+                    this.Height = 130;
+
+                    break;
             }
         }
 
@@ -104,6 +127,8 @@ namespace Gimnasio
                     {
                         MessageBox.Show("ERROR - Los campos no pueden quedar vacios.");
                     }
+                    break;
+                case "Horario":
                     break;
             }
         }
