@@ -28,72 +28,244 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabControl1.SuspendLayout();
+            this.tabControl_Tablas = new System.Windows.Forms.TabControl();
+            this.tabPage_Empleado = new System.Windows.Forms.TabPage();
+            this.tabPage_Cliente = new System.Windows.Forms.TabPage();
+            this.tabPage_Suscripcion = new System.Windows.Forms.TabPage();
+            this.tabPage_Clase = new System.Windows.Forms.TabPage();
+            this.tabPage_Inscripcion = new System.Windows.Forms.TabPage();
+            this.tabPage_Pago = new System.Windows.Forms.TabPage();
+            this.tabPage_Horario = new System.Windows.Forms.TabPage();
+            this.tabPageArticulo = new System.Windows.Forms.TabPage();
+            this.tabPage_venta = new System.Windows.Forms.TabPage();
+            this.tabPage_DetalleVenta = new System.Windows.Forms.TabPage();
+            this.tabPage_Compra = new System.Windows.Forms.TabPage();
+            this.tabPage_DetalleCompra = new System.Windows.Forms.TabPage();
+            this.dataGridView_Articulo = new System.Windows.Forms.DataGridView();
+            this.btn_Insertar_Articulo = new System.Windows.Forms.Button();
+            this.btn_Modificar_Articulo = new System.Windows.Forms.Button();
+            this.btn_Eliminar_Articulo = new System.Windows.Forms.Button();
+            this.tabControl_Tablas.SuspendLayout();
+            this.tabPageArticulo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Articulo)).BeginInit();
             this.SuspendLayout();
             // 
-            // toolStrip1
+            // tabControl_Tablas
             // 
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(846, 25);
-            this.toolStrip1.TabIndex = 0;
-            this.toolStrip1.Text = "toolStrip1";
+            this.tabControl_Tablas.Controls.Add(this.tabPage_Empleado);
+            this.tabControl_Tablas.Controls.Add(this.tabPage_Cliente);
+            this.tabControl_Tablas.Controls.Add(this.tabPage_Suscripcion);
+            this.tabControl_Tablas.Controls.Add(this.tabPage_Clase);
+            this.tabControl_Tablas.Controls.Add(this.tabPage_Inscripcion);
+            this.tabControl_Tablas.Controls.Add(this.tabPage_Pago);
+            this.tabControl_Tablas.Controls.Add(this.tabPage_Horario);
+            this.tabControl_Tablas.Controls.Add(this.tabPageArticulo);
+            this.tabControl_Tablas.Controls.Add(this.tabPage_venta);
+            this.tabControl_Tablas.Controls.Add(this.tabPage_DetalleVenta);
+            this.tabControl_Tablas.Controls.Add(this.tabPage_Compra);
+            this.tabControl_Tablas.Controls.Add(this.tabPage_DetalleCompra);
+            this.tabControl_Tablas.Location = new System.Drawing.Point(2, 3);
+            this.tabControl_Tablas.Name = "tabControl_Tablas";
+            this.tabControl_Tablas.SelectedIndex = 0;
+            this.tabControl_Tablas.Size = new System.Drawing.Size(772, 498);
+            this.tabControl_Tablas.TabIndex = 1;
             // 
-            // tabControl1
+            // tabPage_Empleado
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(0, 28);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(846, 498);
-            this.tabControl1.TabIndex = 1;
+            this.tabPage_Empleado.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_Empleado.Name = "tabPage_Empleado";
+            this.tabPage_Empleado.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_Empleado.Size = new System.Drawing.Size(838, 472);
+            this.tabPage_Empleado.TabIndex = 0;
+            this.tabPage_Empleado.Text = "Empleado";
+            this.tabPage_Empleado.UseVisualStyleBackColor = true;
             // 
-            // tabPage1
+            // tabPage_Cliente
             // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(838, 472);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Empleado";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabPage_Cliente.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_Cliente.Name = "tabPage_Cliente";
+            this.tabPage_Cliente.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_Cliente.Size = new System.Drawing.Size(838, 472);
+            this.tabPage_Cliente.TabIndex = 1;
+            this.tabPage_Cliente.Text = "Cliente";
+            this.tabPage_Cliente.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // tabPage_Suscripcion
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(838, 472);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Cliente";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabPage_Suscripcion.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_Suscripcion.Name = "tabPage_Suscripcion";
+            this.tabPage_Suscripcion.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_Suscripcion.Size = new System.Drawing.Size(838, 472);
+            this.tabPage_Suscripcion.TabIndex = 2;
+            this.tabPage_Suscripcion.Text = "Suscripcion";
+            this.tabPage_Suscripcion.UseVisualStyleBackColor = true;
+            // 
+            // tabPage_Clase
+            // 
+            this.tabPage_Clase.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_Clase.Name = "tabPage_Clase";
+            this.tabPage_Clase.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_Clase.Size = new System.Drawing.Size(838, 472);
+            this.tabPage_Clase.TabIndex = 3;
+            this.tabPage_Clase.Text = "Clase";
+            this.tabPage_Clase.UseVisualStyleBackColor = true;
+            // 
+            // tabPage_Inscripcion
+            // 
+            this.tabPage_Inscripcion.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_Inscripcion.Name = "tabPage_Inscripcion";
+            this.tabPage_Inscripcion.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_Inscripcion.Size = new System.Drawing.Size(838, 472);
+            this.tabPage_Inscripcion.TabIndex = 4;
+            this.tabPage_Inscripcion.Text = "Inscripcion";
+            this.tabPage_Inscripcion.UseVisualStyleBackColor = true;
+            // 
+            // tabPage_Pago
+            // 
+            this.tabPage_Pago.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_Pago.Name = "tabPage_Pago";
+            this.tabPage_Pago.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_Pago.Size = new System.Drawing.Size(838, 472);
+            this.tabPage_Pago.TabIndex = 5;
+            this.tabPage_Pago.Text = "Pago";
+            this.tabPage_Pago.UseVisualStyleBackColor = true;
+            // 
+            // tabPage_Horario
+            // 
+            this.tabPage_Horario.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_Horario.Name = "tabPage_Horario";
+            this.tabPage_Horario.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_Horario.Size = new System.Drawing.Size(838, 472);
+            this.tabPage_Horario.TabIndex = 6;
+            this.tabPage_Horario.Text = "Horario";
+            this.tabPage_Horario.UseVisualStyleBackColor = true;
+            // 
+            // tabPageArticulo
+            // 
+            this.tabPageArticulo.Controls.Add(this.btn_Eliminar_Articulo);
+            this.tabPageArticulo.Controls.Add(this.btn_Modificar_Articulo);
+            this.tabPageArticulo.Controls.Add(this.btn_Insertar_Articulo);
+            this.tabPageArticulo.Controls.Add(this.dataGridView_Articulo);
+            this.tabPageArticulo.Location = new System.Drawing.Point(4, 22);
+            this.tabPageArticulo.Name = "tabPageArticulo";
+            this.tabPageArticulo.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageArticulo.Size = new System.Drawing.Size(764, 472);
+            this.tabPageArticulo.TabIndex = 7;
+            this.tabPageArticulo.Text = "Articulo";
+            this.tabPageArticulo.UseVisualStyleBackColor = true;
+            // 
+            // tabPage_venta
+            // 
+            this.tabPage_venta.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_venta.Name = "tabPage_venta";
+            this.tabPage_venta.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_venta.Size = new System.Drawing.Size(838, 472);
+            this.tabPage_venta.TabIndex = 8;
+            this.tabPage_venta.Text = "Venta";
+            this.tabPage_venta.UseVisualStyleBackColor = true;
+            // 
+            // tabPage_DetalleVenta
+            // 
+            this.tabPage_DetalleVenta.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_DetalleVenta.Name = "tabPage_DetalleVenta";
+            this.tabPage_DetalleVenta.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_DetalleVenta.Size = new System.Drawing.Size(838, 472);
+            this.tabPage_DetalleVenta.TabIndex = 9;
+            this.tabPage_DetalleVenta.Text = "DetalleVenta";
+            this.tabPage_DetalleVenta.UseVisualStyleBackColor = true;
+            // 
+            // tabPage_Compra
+            // 
+            this.tabPage_Compra.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_Compra.Name = "tabPage_Compra";
+            this.tabPage_Compra.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_Compra.Size = new System.Drawing.Size(838, 472);
+            this.tabPage_Compra.TabIndex = 10;
+            this.tabPage_Compra.Text = "Compra";
+            this.tabPage_Compra.UseVisualStyleBackColor = true;
+            // 
+            // tabPage_DetalleCompra
+            // 
+            this.tabPage_DetalleCompra.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_DetalleCompra.Name = "tabPage_DetalleCompra";
+            this.tabPage_DetalleCompra.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_DetalleCompra.Size = new System.Drawing.Size(838, 472);
+            this.tabPage_DetalleCompra.TabIndex = 11;
+            this.tabPage_DetalleCompra.Text = "DetalleCompra";
+            this.tabPage_DetalleCompra.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView_Articulo
+            // 
+            this.dataGridView_Articulo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_Articulo.Location = new System.Drawing.Point(7, 7);
+            this.dataGridView_Articulo.Name = "dataGridView_Articulo";
+            this.dataGridView_Articulo.Size = new System.Drawing.Size(642, 457);
+            this.dataGridView_Articulo.TabIndex = 0;
+            // 
+            // btn_Insertar_Articulo
+            // 
+            this.btn_Insertar_Articulo.Location = new System.Drawing.Point(656, 7);
+            this.btn_Insertar_Articulo.Name = "btn_Insertar_Articulo";
+            this.btn_Insertar_Articulo.Size = new System.Drawing.Size(102, 23);
+            this.btn_Insertar_Articulo.TabIndex = 1;
+            this.btn_Insertar_Articulo.Text = "Insertar";
+            this.btn_Insertar_Articulo.UseVisualStyleBackColor = true;
+            this.btn_Insertar_Articulo.Click += new System.EventHandler(this.btn_Insertar_Articulo_Click);
+            // 
+            // btn_Modificar_Articulo
+            // 
+            this.btn_Modificar_Articulo.Location = new System.Drawing.Point(656, 37);
+            this.btn_Modificar_Articulo.Name = "btn_Modificar_Articulo";
+            this.btn_Modificar_Articulo.Size = new System.Drawing.Size(102, 23);
+            this.btn_Modificar_Articulo.TabIndex = 2;
+            this.btn_Modificar_Articulo.Text = "Modificar";
+            this.btn_Modificar_Articulo.UseVisualStyleBackColor = true;
+            this.btn_Modificar_Articulo.Click += new System.EventHandler(this.btn_Modificar_Articulo_Click);
+            // 
+            // btn_Eliminar_Articulo
+            // 
+            this.btn_Eliminar_Articulo.Location = new System.Drawing.Point(656, 66);
+            this.btn_Eliminar_Articulo.Name = "btn_Eliminar_Articulo";
+            this.btn_Eliminar_Articulo.Size = new System.Drawing.Size(102, 23);
+            this.btn_Eliminar_Articulo.TabIndex = 3;
+            this.btn_Eliminar_Articulo.Text = "Eliminar";
+            this.btn_Eliminar_Articulo.UseVisualStyleBackColor = true;
+            this.btn_Eliminar_Articulo.Click += new System.EventHandler(this.btn_Eliminar_Articulo_Click);
             // 
             // form_gimnasio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(846, 538);
-            this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.toolStrip1);
+            this.ClientSize = new System.Drawing.Size(779, 501);
+            this.Controls.Add(this.tabControl_Tablas);
             this.Name = "form_gimnasio";
             this.Text = "Formulario Gimnasio";
-            this.tabControl1.ResumeLayout(false);
+            this.Load += new System.EventHandler(this.form_gimnasio_Load);
+            this.tabControl_Tablas.ResumeLayout(false);
+            this.tabPageArticulo.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Articulo)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabControl tabControl_Tablas;
+        private System.Windows.Forms.TabPage tabPage_Empleado;
+        private System.Windows.Forms.TabPage tabPage_Cliente;
+        private System.Windows.Forms.TabPage tabPage_Suscripcion;
+        private System.Windows.Forms.TabPage tabPage_Clase;
+        private System.Windows.Forms.TabPage tabPage_Inscripcion;
+        private System.Windows.Forms.TabPage tabPage_Pago;
+        private System.Windows.Forms.TabPage tabPage_Horario;
+        private System.Windows.Forms.TabPage tabPageArticulo;
+        private System.Windows.Forms.TabPage tabPage_venta;
+        private System.Windows.Forms.TabPage tabPage_DetalleVenta;
+        private System.Windows.Forms.TabPage tabPage_Compra;
+        private System.Windows.Forms.TabPage tabPage_DetalleCompra;
+        private System.Windows.Forms.Button btn_Eliminar_Articulo;
+        private System.Windows.Forms.Button btn_Modificar_Articulo;
+        private System.Windows.Forms.Button btn_Insertar_Articulo;
+        private System.Windows.Forms.DataGridView dataGridView_Articulo;
     }
 }
 
