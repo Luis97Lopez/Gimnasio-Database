@@ -129,6 +129,16 @@ namespace Gimnasio
                     }
                     break;
                 case "Horario":
+                    // Checa que los controles no estén vacios ni que las cadenas sobrepasen la longitud correspondiente
+                    if (textBox1.Text != "" && textBox2.Text != "")
+                    {
+                        band_aceptar = true;
+                        this.Close();
+                    }
+                    else // Al menos un textbox está vacio
+                    {
+                        MessageBox.Show("ERROR - Los campos no pueden quedar vacios.");
+                    }
                     break;
             }
         }
