@@ -20,6 +20,11 @@ namespace Gimnasio
                                     "DATABASE=Gimnasio;" +
                                     "integrated security=true;";
 
+            Conexion de Alfredo:
+        private const string ConnectionString = "SERVER=DESKTOP-DVAR0RA\\SQLEXPRESS;" +
+                                                "DATABASE=Gimnasio;" +
+                                                "integrated security=true;";
+
         */
 
         // Se crea la cadena con la que se va a conectar a la base de datos.
