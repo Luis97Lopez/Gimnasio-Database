@@ -20,7 +20,7 @@ CREATE TABLE gimnasio.DetalleVenta(
 	IdDetalleVenta BIGINT IDENTITY(1,1) NOT NULL,
 	IdArticulo BIGINT NOT NULL,
 	Cantidad INT NOT NULL,
-	Total FLOAT NOT NULL,
+	Total FLOAT,
 
 	CONSTRAINT PK_DetalleVenta PRIMARY KEY (IdDetalleVenta),
 	CONSTRAINT FK_Articulo1 FOREIGN KEY (IdArticulo)
@@ -33,7 +33,7 @@ CREATE TABLE gimnasio.DetalleCompra(
 	IdDetalleCompra BIGINT IDENTITY(1,1) NOT NULL,
 	IdArticulo BIGINT NOT NULL,
 	Cantidad INT NOT NULL,
-	Total FLOAT NOT NULL,
+	Total FLOAT,
 
 	CONSTRAINT PK_DetalleCompra PRIMARY KEY (IdDetalleCompra),
 	CONSTRAINT FK_Articulo2 FOREIGN KEY (IdArticulo)
@@ -99,7 +99,7 @@ CREATE TABLE gimnasio.Compra(
 CREATE TABLE gimnasio.Cliente(
 
 	IdCliente BIGINT IDENTITY(1,1) NOT NULL,
-	IdEmpleado BIGINT NOT NULL,
+	IdEmpleado BIGINT,
 	Nombre VARCHAR(50) NOT NULL,
 	Direccion VARCHAR(70) NOT NULL,
 
@@ -205,8 +205,6 @@ BEGIN
 END
 
 
-
-
 CREATE TRIGGER gimnasio.trigger_ventaArticulo
 ON gimnasio.DetalleVenta
 AFTER INSERT
@@ -222,5 +220,3 @@ BEGIN
 						WHERE IdArticulo = @IdArticulo) - @Cantidad)
 	WHERE IdArticulo = @IdArticulo
 END
-
-
