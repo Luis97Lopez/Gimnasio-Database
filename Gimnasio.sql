@@ -174,11 +174,17 @@ CREATE TABLE gimnasio.Inscripcion(
 
 );
 
------------------------------------------------------------------------
-
 CREATE RULE RL_EstadoSuscripcion AS @Estado IN (
 	'Activa','Inactiva'
 )
 
+CREATE RULE RL_TipoSuscripcion AS @Suscripcion IN (
+	'Mensual', 'Semestral', 'Anual'
+)
+
 EXEC sp_bindrule 'RL_EstadoSuscripcion','gimnasio.Suscripcion.Estado'
 
+EXEC sp_bindrule 'RL_TipoSuscripcion','gimnasio.Suscripcion.Tipo'
+
+
+-----------------------------------------------------------------------
