@@ -190,7 +190,7 @@ EXEC sp_bindrule 'RL_TipoSuscripcion','gimnasio.Suscripcion.Tipo'
 
 CREATE TRIGGER gimnasio.trigger_compraArticulo
 ON gimnasio.DetalleCompra
-AFTER INSERT, UPDATE
+AFTER INSERT
 AS
 BEGIN
 	DECLARE @IdArticulo BIGINT;
@@ -209,7 +209,7 @@ END
 
 CREATE TRIGGER gimnasio.trigger_ventaArticulo
 ON gimnasio.DetalleVenta
-AFTER INSERT, UPDATE
+AFTER INSERT
 AS
 BEGIN
 	DECLARE @IdArticulo BIGINT;
@@ -224,4 +224,3 @@ BEGIN
 END
 
 
------------------------------------------------------------------------
