@@ -188,8 +188,8 @@ EXEC sp_bindrule 'RL_TipoSuscripcion','gimnasio.Suscripcion.Tipo'
 
 
 
-CREATE TRIGGER [gimnasio].[trigger_compraArticulo]
-ON [gimnasio].[DetalleCompra]
+CREATE TRIGGER gimnasio.trigger_compraArticulo
+ON gimnasio.DetalleCompra
 AFTER INSERT, UPDATE
 AS
 BEGIN
@@ -201,6 +201,25 @@ BEGIN
 	UPDATE gimnasio.Articulo
 	SET Existencia = ((SELECT Existencia FROM gimnasio.Articulo 
 						WHERE IdArticulo = @IdArticulo) + @Cantidad)
+	WHERE IdArticulo = @IdArticulo
+END
+
+
+
+
+CREATE TRIGGER gimnasio.trigger_ventaArticulo
+ON gimnasio.DetalleVenta
+AFTER INSERT, UPDATE
+AS
+BEGIN
+	DECLARE @IdArticulo BIGINT;
+	DECLARE @Cantidad FLOAT;
+	SELECT @IdArticulo=inserted.IdArticulo FROM inserted;
+	SELECT @Cantidad=inserted.Cantidad FROM inserted;
+
+	UPDATE gimnasio.Articulo
+	SET Existencia = ((SELECT Existencia FROM gimnasio.Articulo 
+						WHERE IdArticulo = @IdArticulo) - @Cantidad)
 	WHERE IdArticulo = @IdArticulo
 END
 
