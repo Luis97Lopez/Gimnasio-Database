@@ -49,20 +49,61 @@ namespace Gimnasio
 
             switch (tabla) // Muestra solo los controles necesarios para los atributos de la tabla y redimensiona
             {
-                case "Articulo":
-                    label1.Text = "Nombre (40)";
+                case "Empleado":
+                    label1.Text = "Horario";
                     label1.Location = new Point(10, 10);
                     label1.Show();
                     textBox1.Location = new Point(10, 30);
                     textBox1.Show();
 
-                    label2.Text = "Precio";
+                    label2.Text = "Nombre (50)";
                     label2.Location = new Point(130, 10);
                     label2.Show();
                     textBox2.Location = new Point(130, 30);
                     textBox2.Show();
 
-                    label3.Text = "Existencia";
+                    label3.Text = "Celular (15)";
+                    label3.Location = new Point(250, 10);
+                    label3.Show();
+                    textBox3.Location = new Point(250, 30);
+                    textBox3.Show();
+
+                    label4.Text = "Sueldo ($)";
+                    label4.Location = new Point(370, 10);
+                    label4.Show();
+                    textBox4.Location = new Point(370, 30);
+                    textBox4.Show();
+
+                    label5.Text = "Días (7)";
+                    label5.Location = new Point(490, 10);
+                    label5.Show();
+                    textBox5.Location = new Point(490, 30);
+                    textBox5.Show();
+
+                    // Posiciona los botones en las orillas de la ventana, a la izquierda aceptar y a la derecha cancelar
+                    button_Aceptar.Location = new Point(10, 50 + 10);
+                    button_Cancelar.Location = new Point(490 + 20, 50 + 10);
+
+                    // Redimensiona toda la ventana
+                    this.Width = 620;
+                    this.Height = 130;
+
+                    break;
+
+                case "Cliente":
+                    label1.Text = "Empleado";
+                    label1.Location = new Point(10, 10);
+                    label1.Show();
+                    textBox1.Location = new Point(10, 30);
+                    textBox1.Show();
+
+                    label2.Text = "Nombre (50)";
+                    label2.Location = new Point(130, 10);
+                    label2.Show();
+                    textBox2.Location = new Point(130, 30);
+                    textBox2.Show();
+
+                    label3.Text = "Dirección (70)";
                     label3.Location = new Point(250, 10);
                     label3.Show();
                     textBox3.Location = new Point(250, 30);
@@ -74,6 +115,152 @@ namespace Gimnasio
 
                     // Redimensiona toda la ventana
                     this.Width = 380;
+                    this.Height = 130;
+
+                    break;
+
+                case "Suscripcion":
+                    label1.Text = "Empleado";
+                    label1.Location = new Point(10, 10);
+                    label1.Show();
+                    textBox1.Location = new Point(10, 30);
+                    textBox1.Show();
+
+                    label2.Text = "Cliente";
+                    label2.Location = new Point(130, 10);
+                    label2.Show();
+                    textBox2.Location = new Point(130, 30);
+                    textBox2.Show();
+
+                    label3.Text = "Precio ($)";
+                    label3.Location = new Point(250, 10);
+                    label3.Show();
+                    textBox3.Location = new Point(250, 30);
+                    textBox3.Show();
+
+                    label4.Text = "Duración (20)";
+                    label4.Location = new Point(370, 10);
+                    label4.Show();
+                    textBox4.Location = new Point(370, 30);
+                    textBox4.Show();
+
+                    label5.Text = "Tipo (20)";
+                    label5.Location = new Point(490, 10);
+                    label5.Show();
+                    textBox5.Location = new Point(490, 30);
+                    textBox5.Show();
+
+                    label6.Text = "Fecha (Año-Mes-Día)";
+                    label6.Location = new Point(610, 10);
+                    label6.Show();
+                    textBox6.Location = new Point(610, 30);
+                    textBox6.Show();
+
+                    label7.Text = "Estado (20)";
+                    label7.Location = new Point(730, 10);
+                    label7.Show();
+                    textBox7.Location = new Point(730, 30);
+                    textBox7.Show();
+
+                    // Posiciona los botones en las orillas de la ventana, a la izquierda aceptar y a la derecha cancelar
+                    button_Aceptar.Location = new Point(10, 50 + 10);
+                    button_Cancelar.Location = new Point(730 + 20, 50 + 10);
+
+                    // Redimensiona toda la ventana
+                    this.Width = 860;
+                    this.Height = 130;
+
+                    break;
+
+                case "Clase":
+                    label1.Text = "Empleado";
+                    label1.Location = new Point(10, 10);
+                    label1.Show();
+                    textBox1.Location = new Point(10, 30);
+                    textBox1.Show();
+
+                    label2.Text = "Horario";
+                    label2.Location = new Point(130, 10);
+                    label2.Show();
+                    textBox2.Location = new Point(130, 30);
+                    textBox2.Show();
+
+                    label3.Text = "Nombre (50)";
+                    label3.Location = new Point(250, 10);
+                    label3.Show();
+                    textBox3.Location = new Point(250, 30);
+                    textBox3.Show();
+
+                    label4.Text = "Cupo";
+                    label4.Location = new Point(370, 10);
+                    label4.Show();
+                    textBox4.Location = new Point(370, 30);
+                    textBox4.Show();
+
+                    // Posiciona los botones en las orillas de la ventana, a la izquierda aceptar y a la derecha cancelar
+                    button_Aceptar.Location = new Point(10, 50 + 10);
+                    button_Cancelar.Location = new Point(370 + 20, 50 + 10);
+
+                    // Redimensiona toda la ventana
+                    this.Width = 500;
+                    this.Height = 130;
+
+                    break;
+
+                case "Inscripcion":
+                    label1.Text = "Clase";
+                    label1.Location = new Point(10, 10);
+                    label1.Show();
+                    textBox1.Location = new Point(10, 30);
+                    textBox1.Show();
+
+                    label2.Text = "Cliente";
+                    label2.Location = new Point(130, 10);
+                    label2.Show();
+                    textBox2.Location = new Point(130, 30);
+                    textBox2.Show();
+
+                    // Posiciona los botones en las orillas de la ventana, a la izquierda aceptar y a la derecha cancelar
+                    button_Aceptar.Location = new Point(10, 50 + 10);
+                    button_Cancelar.Location = new Point(130 + 20, 50 + 10);
+
+                    // Redimensiona toda la ventana
+                    this.Width = 260;
+                    this.Height = 130;
+
+                    break;
+
+                case "Pago":
+                    label1.Text = "Suscripción";
+                    label1.Location = new Point(10, 10);
+                    label1.Show();
+                    textBox1.Location = new Point(10, 30);
+                    textBox1.Show();
+
+                    label2.Text = "Cliente";
+                    label2.Location = new Point(130, 10);
+                    label2.Show();
+                    textBox2.Location = new Point(130, 30);
+                    textBox2.Show();
+
+                    label3.Text = "Total ($)";
+                    label3.Location = new Point(250, 10);
+                    label3.Show();
+                    textBox3.Location = new Point(250, 30);
+                    textBox3.Show();
+
+                    label4.Text = "Fecha (Año-Mes-Día)";
+                    label4.Location = new Point(370, 10);
+                    label4.Show();
+                    textBox4.Location = new Point(370, 30);
+                    textBox4.Show();
+
+                    // Posiciona los botones en las orillas de la ventana, a la izquierda aceptar y a la derecha cancelar
+                    button_Aceptar.Location = new Point(10, 50 + 10);
+                    button_Cancelar.Location = new Point(370 + 20, 50 + 10);
+
+                    // Redimensiona toda la ventana
+                    this.Width = 500;
                     this.Height = 130;
 
                     break;
@@ -96,10 +283,156 @@ namespace Gimnasio
                     button_Cancelar.Location = new Point(130 + 20, 50 + 10);
 
                     // Redimensiona toda la ventana
+                    this.Width = 270;
+                    this.Height = 130;
+
+                    break;
+
+                case "Articulo":
+                    label1.Text = "Nombre (40)";
+                    label1.Location = new Point(10, 10);
+                    label1.Show();
+                    textBox1.Location = new Point(10, 30);
+                    textBox1.Show();
+
+                    label2.Text = "Precio ($)";
+                    label2.Location = new Point(130, 10);
+                    label2.Show();
+                    textBox2.Location = new Point(130, 30);
+                    textBox2.Show();
+
+                    label3.Text = "Existencia";
+                    label3.Location = new Point(250, 10);
+                    label3.Show();
+                    textBox3.Location = new Point(250, 30);
+                    textBox3.Show();
+
+                    // Posiciona los botones en las orillas de la ventana, a la izquierda aceptar y a la derecha cancelar
+                    button_Aceptar.Location = new Point(10, 50 + 10);
+                    button_Cancelar.Location = new Point(250 + 20, 50 + 10);
+
+                    // Redimensiona toda la ventana
                     this.Width = 380;
                     this.Height = 130;
 
                     break;
+
+                case "Venta":
+                    label1.Text = "Empleado";
+                    label1.Location = new Point(10, 10);
+                    label1.Show();
+                    textBox1.Location = new Point(10, 30);
+                    textBox1.Show();
+
+                    label2.Text = "DetalleVenta";
+                    label2.Location = new Point(130, 10);
+                    label2.Show();
+                    textBox2.Location = new Point(130, 30);
+                    textBox2.Show();
+
+                    label3.Text = "Fecha (Año-Mes-Día)";
+                    label3.Location = new Point(250, 10);
+                    label3.Show();
+                    textBox3.Location = new Point(250, 30);
+                    textBox3.Show();
+
+                    // Posiciona los botones en las orillas de la ventana, a la izquierda aceptar y a la derecha cancelar
+                    button_Aceptar.Location = new Point(10, 50 + 10);
+                    button_Cancelar.Location = new Point(250 + 20, 50 + 10);
+
+                    // Redimensiona toda la ventana
+                    this.Width = 380;
+                    this.Height = 130;
+
+                    break;
+
+                case "DetalleVenta":
+                    label1.Text = "Articulo";
+                    label1.Location = new Point(10, 10);
+                    label1.Show();
+                    textBox1.Location = new Point(10, 30);
+                    textBox1.Show();
+
+                    label2.Text = "Cantidad";
+                    label2.Location = new Point(130, 10);
+                    label2.Show();
+                    textBox2.Location = new Point(130, 30);
+                    textBox2.Show();
+
+                    label3.Text = "Total ($)";
+                    label3.Location = new Point(250, 10);
+                    label3.Show();
+                    textBox3.Location = new Point(250, 30);
+                    textBox3.Show();
+
+                    // Posiciona los botones en las orillas de la ventana, a la izquierda aceptar y a la derecha cancelar
+                    button_Aceptar.Location = new Point(10, 50 + 10);
+                    button_Cancelar.Location = new Point(250 + 20, 50 + 10);
+
+                    // Redimensiona toda la ventana
+                    this.Width = 380;
+                    this.Height = 130;
+
+                    break;
+
+                case "Compra":
+                    label1.Text = "Empleado";
+                    label1.Location = new Point(10, 10);
+                    label1.Show();
+                    textBox1.Location = new Point(10, 30);
+                    textBox1.Show();
+
+                    label2.Text = "DetalleCompra";
+                    label2.Location = new Point(130, 10);
+                    label2.Show();
+                    textBox2.Location = new Point(130, 30);
+                    textBox2.Show();
+
+                    label3.Text = "Fecha (Año-Mes-Día)";
+                    label3.Location = new Point(250, 10);
+                    label3.Show();
+                    textBox3.Location = new Point(250, 30);
+                    textBox3.Show();
+
+                    // Posiciona los botones en las orillas de la ventana, a la izquierda aceptar y a la derecha cancelar
+                    button_Aceptar.Location = new Point(10, 50 + 10);
+                    button_Cancelar.Location = new Point(250 + 20, 50 + 10);
+
+                    // Redimensiona toda la ventana
+                    this.Width = 380;
+                    this.Height = 130;
+
+                    break;
+
+                case "DetalleCompra":
+                    label1.Text = "Articulo";
+                    label1.Location = new Point(10, 10);
+                    label1.Show();
+                    textBox1.Location = new Point(10, 30);
+                    textBox1.Show();
+
+                    label2.Text = "Cantidad";
+                    label2.Location = new Point(130, 10);
+                    label2.Show();
+                    textBox2.Location = new Point(130, 30);
+                    textBox2.Show();
+
+                    label3.Text = "Total ($)";
+                    label3.Location = new Point(250, 10);
+                    label3.Show();
+                    textBox3.Location = new Point(250, 30);
+                    textBox3.Show();
+
+                    // Posiciona los botones en las orillas de la ventana, a la izquierda aceptar y a la derecha cancelar
+                    button_Aceptar.Location = new Point(10, 50 + 10);
+                    button_Cancelar.Location = new Point(250 + 20, 50 + 10);
+
+                    // Redimensiona toda la ventana
+                    this.Width = 380;
+                    this.Height = 130;
+
+                    break;
+
             }
         }
 
