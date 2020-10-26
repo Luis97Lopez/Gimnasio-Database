@@ -220,3 +220,18 @@ BEGIN
 						WHERE IdArticulo = @IdArticulo) - @Cantidad)
 	WHERE IdArticulo = @IdArticulo
 END
+
+CREATE TRIGGER gimnasio.trigger_addInscripcion
+ON gimnasio.Inscripcion
+AFTER INSERT
+AS
+BEGIN
+	DECLARE @IdClase BIGINT;
+
+	SELECT @IdClase=inserted.IdClase FROM inserted;
+
+	UPDATE gimnasio.Clase
+	SET Cupo = (SELECT Cupo FROM gimnasio.Clase WHERE IdClase=@IdClase) - 1
+	WHERE IdClase = @IdClase
+END
+
