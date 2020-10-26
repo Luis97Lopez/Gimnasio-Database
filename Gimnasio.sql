@@ -292,3 +292,27 @@ BEGIN
 	WHERE IdDetalleVenta = (@IdDetalleVenta)
 
 END
+
+
+CREATE TRIGGER gimnasio.trigger_addEmpleado
+ON gimnasio.Cliente
+AFTER INSERT
+AS BEGIN
+
+	DECLARE @IdEmpleado BIGINT;
+	DECLARE @IdCliente BIGINT;
+
+	SELECT @IdEmpleado=IdEmpleado FROM
+		(SELECT TOP 1 e.IdEmpleado, COUNT(c.IdEmpleado) AS number 
+		FROM gimnasio.Empleado e LEFT JOIN gimnasio.Cliente c ON e.IdEmpleado = c.IdEmpleado
+		GROUP BY e.IdEmpleado
+		ORDER BY number ASC)
+	AS foo
+
+	SELECT @IdCliente=IdCliente FROM inserted;
+
+	UPDATE gimnasio.Cliente
+	SET IdEmpleado=@IdEmpleado
+	WHERE IdCliente=@IdCliente
+END
+
