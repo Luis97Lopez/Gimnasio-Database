@@ -249,3 +249,25 @@ BEGIN
 	WHERE IdClase = @IdClase
 END
 
+
+CREATE TRIGGER gimnasio.totalDetalleCompra
+ON gimnasio.DetalleCompra
+AFTER INSERT, UPDATE
+AS
+BEGIN
+	DECLARE @IdArticulo BIGINT;
+	DECLARE @Cantidad INT;
+	DECLARE @IdDetalleCompra BIGINT;
+
+	SELECT	@IdDetalleCompra=IdDetalleCompra, 
+			@Cantidad=Cantidad, 
+			@IdArticulo=IdArticulo 
+	FROM inserted;
+
+
+	UPDATE gimnasio.DetalleCompra
+	SET Total = (@Cantidad) * (SELECT Precio FROM gimnasio.Articulo WHERE IdArticulo=@IdArticulo)
+	WHERE IdDetalleCompra = (@IdDetalleCompra)
+
+END
+
