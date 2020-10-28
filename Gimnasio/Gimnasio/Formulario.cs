@@ -191,11 +191,11 @@ namespace Gimnasio
                     textBox3.Location = new Point(250, 30);
                     textBox3.Show();
 
-                    /*label4.Text = "Cupo";
+                    label4.Text = "Cupo";
                     label4.Location = new Point(370, 10);
                     label4.Show();
                     textBox4.Location = new Point(370, 30);
-                    textBox4.Show();*/
+                    textBox4.Show();
 
                     // Posiciona los botones en las orillas de la ventana, a la izquierda aceptar y a la derecha cancelar
                     button_Aceptar.Location = new Point(10, 50 + 10);
@@ -462,6 +462,84 @@ namespace Gimnasio
                     }
                     break;
                 case "Horario":
+                    // Checa que los controles no estén vacios ni que las cadenas sobrepasen la longitud correspondiente
+                    if (textBox1.Text != "" && textBox2.Text != "")
+                    {
+                        band_aceptar = true;
+                        this.Close();
+                    }
+                    else // Al menos un textbox está vacio
+                    {
+                        MessageBox.Show("ERROR - Los campos no pueden quedar vacios.");
+                    }
+                    break;
+                case "Clase":
+                    // Checa que los controles no estén vacios ni que las cadenas sobrepasen la longitud correspondiente
+                    if (textBox1.Text != "" && textBox2.Text != "" && textBox3.Text != "" && textBox4.Text != "")
+                    {
+                        // Solo se checa el textbox1 porque es la unica cadena que hay
+                        if (textBox3.Text.Length <= 50)
+                        {
+                            // Se alza la bandera para confirmar la acción y se cierra
+                            band_aceptar = true;
+                            this.Close();
+                        }
+                        else // La cadena de texto sobrepasa la longitud permitida en la base de datos
+                        {
+                            MessageBox.Show("ERROR - Las cadenas no pueden medir más de lo permitido.");
+                        }
+                    }
+                    else // Al menos un textbox está vacio
+                    {
+                        MessageBox.Show("ERROR - Los campos no pueden quedar vacios.");
+                    }
+                    break;
+                case "Cliente":
+                    // Checa que los controles no estén vacios ni que las cadenas sobrepasen la longitud correspondiente
+                    if (textBox2.Text != "" && textBox3.Text != "")
+                    {
+                        // Solo se checa el textbox1 porque es la unica cadena que hay
+                        if (textBox2.Text.Length <= 50 && textBox2.Text.Length <= 70)
+                        {
+                            // Se alza la bandera para confirmar la acción y se cierra
+                            band_aceptar = true;
+                            this.Close();
+                        }
+                        else // La cadena de texto sobrepasa la longitud permitida en la base de datos
+                        {
+                            MessageBox.Show("ERROR - Las cadenas no pueden medir más de lo permitido.");
+                        }
+                    }
+                    else // Al menos un textbox está vacio
+                    {
+                        MessageBox.Show("ERROR - Los campos no pueden quedar vacios.");
+                    }
+                    break;
+                case "Pago":
+                    // Checa que los controles no estén vacios ni que las cadenas sobrepasen la longitud correspondiente
+                    if (textBox1.Text != "" && textBox2.Text != "" && textBox3.Text != "" && textBox4.Text != "")
+                    {
+                        band_aceptar = true;
+                        this.Close();
+                    }
+                    else // Al menos un textbox está vacio
+                    {
+                        MessageBox.Show("ERROR - Los campos no pueden quedar vacios.");
+                    }
+                    break;
+                case "DetalleVenta":
+                    // Checa que los controles no estén vacios ni que las cadenas sobrepasen la longitud correspondiente
+                    if (textBox1.Text != "" && textBox2.Text != "")
+                    {
+                        band_aceptar = true;
+                        this.Close();
+                    }
+                    else // Al menos un textbox está vacio
+                    {
+                        MessageBox.Show("ERROR - Los campos no pueden quedar vacios.");
+                    }
+                    break;
+                case "DetalleCompra":
                     // Checa que los controles no estén vacios ni que las cadenas sobrepasen la longitud correspondiente
                     if (textBox1.Text != "" && textBox2.Text != "")
                     {

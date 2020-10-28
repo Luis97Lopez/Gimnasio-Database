@@ -196,7 +196,7 @@ namespace Gimnasio
                     v = "(Nombre, Direccion) VALUES(@Nombre, @Direccion)";
                     break;
                 case "Clase":
-                    v = "(Empleado, Horario, Nombre) VALUES(@Empleado, @Horario, @Nombre)";
+                    v = "(IdEmpleado, IdHorario, Nombre, Cupo) VALUES(@Empleado, @Horario, @Nombre, @Cupo)";
                     break;
                 case "Pago":
                     v = "(Suscripcion, Cliente, Total) VALUES(@Suscripcion, @Cliente, @Total)";
@@ -228,7 +228,7 @@ namespace Gimnasio
                     v = "SET Nombre = @Nombre, Direccion = @Direccion, WHERE IdCliente = @IdCliente";
                     break;
                 case "Clase":
-                    v = "SET Empleado = @Empleado, Horario = @Horario, Nombre, @Nombre WHERE IdClase = @IdClase";
+                    v = "SET IdEmpleado = @Empleado, IdHorario = @Horario, Nombre = @Nombre, Cupo = @Cupo WHERE IdClase = @IdClase";
                     break;
                 case "Pago":
                     v = "SET Suscripcion = @Suscripcion, Cliente = @Cliente, Total = @Total WHERE IdPago = @IdPago";
@@ -305,6 +305,7 @@ namespace Gimnasio
                     lista.Add(formulario.Textbox1.Text);
                     lista.Add(formulario.Textbox2.Text);
                     lista.Add(formulario.Textbox3.Text);
+                    lista.Add(formulario.Textbox4.Text);
                     break;
                 case "Pago":
                     lista.Add(formulario.Textbox1.Text);
@@ -345,6 +346,7 @@ namespace Gimnasio
                     formulario.Textbox1.Text = dataGridView.SelectedCells[1].Value.ToString();
                     formulario.Textbox2.Text = dataGridView.SelectedCells[2].Value.ToString();
                     formulario.Textbox3.Text = dataGridView.SelectedCells[3].Value.ToString();
+                    formulario.Textbox4.Text = dataGridView.SelectedCells[4].Value.ToString();
                     break;
                 case "Pago":
                     formulario.Textbox1.Text = dataGridView.SelectedCells[1].Value.ToString();
@@ -389,6 +391,7 @@ namespace Gimnasio
                     lista.Add(formulario.Textbox1.Text);
                     lista.Add(formulario.Textbox2.Text);
                     lista.Add(formulario.Textbox3.Text);
+                    lista.Add(formulario.Textbox4.Text);
                     break;
                 case "Pago":
                     lista.Add(formulario.Textbox1.Text);
@@ -431,6 +434,7 @@ namespace Gimnasio
                     comando.Parameters.AddWithValue("@Empleado", datos[1]);
                     comando.Parameters.AddWithValue("@Horario", datos[2]);
                     comando.Parameters.AddWithValue("@Nombre", datos[3]);
+                    comando.Parameters.AddWithValue("@Cupo", datos[4]);
                     break;
                 case "Pago":
                     comando.Parameters.AddWithValue("@Suscripcion", datos[1]);
@@ -475,6 +479,7 @@ namespace Gimnasio
                     comando.Parameters.AddWithValue("@Empleado", datos[1]);
                     comando.Parameters.AddWithValue("@Horario", datos[2]);
                     comando.Parameters.AddWithValue("@Nombre", datos[3]);
+                    comando.Parameters.AddWithValue("@Cupo", datos[4]);
                     comando.Parameters.AddWithValue("@IdClase", dataGridView.SelectedCells[0].Value.ToString());
                     break;
                 case "Pago":
