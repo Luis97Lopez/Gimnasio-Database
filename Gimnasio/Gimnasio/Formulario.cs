@@ -447,7 +447,9 @@ namespace Gimnasio
             }
         }
 
-
+        /// <summary>
+        /// Método que selecciona el horario a modificar en el combobox de horarios.
+        /// </summary>
         private void SeleccionaHorarioModif()
         {
             foreach(string cad in listaHorarios)
@@ -581,6 +583,12 @@ namespace Gimnasio
             this.Close();
         }
 
+
+        /// <summary>
+        /// Método para llenar el combobox con los horarios existentes en la tabla.
+        /// Formato: Id - HoraInicio - HoraFin.
+        /// Se llena ordenados ascendente por HoraInicio
+        /// </summary>
         private void llenaComboHorarios()
         {
             
@@ -668,6 +676,12 @@ namespace Gimnasio
             }
         }
 
+        /// <summary>
+        /// Evento que obtiene el Id del horario seleccionado.
+        /// Se realiza cada que cambia el item seleccionado del Combobox de horarios.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             string IdHorario = comboBox1.SelectedItem.ToString();
