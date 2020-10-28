@@ -521,8 +521,7 @@ namespace Gimnasio
                     comando.Parameters.AddWithValue("@IdDetalleVenta", dataGridView.SelectedCells[0].Value.ToString());
                     break;
                 case "DetalleCompra":
-                    comando.Parameters.AddWithValue("@IdDetalleCompra" +
-                        "", dataGridView.SelectedCells[0].Value.ToString());
+                    comando.Parameters.AddWithValue("@IdDetalleCompra", dataGridView.SelectedCells[0].Value.ToString());
                     break;
             }
         }
