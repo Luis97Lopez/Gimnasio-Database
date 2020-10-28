@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,10 +18,14 @@ namespace Gimnasio
         // Variable para saber cuando se hizo clic en aceptar
         public bool band_aceptar = false;
 
+        public List<string> listaHorarios = new List<string>(); //Lista que almacena los horarios existentes en formato string.
+
         public Formulario(string tbl)
         {
             InitializeComponent();
             tabla = tbl;
+
+            
 
             // Esconde todo
             label1.Hide();
@@ -173,6 +178,12 @@ namespace Gimnasio
                     break;
 
                 case "Clase":
+
+                    llenaComboHorarios(); //Lena el Combobox de Horarios con los horarios existentes en la tabla
+
+                    if(textBox2.Text != string.Empty) //Si es modificación selecciona el item adecuado del combobox.
+                        SeleccionaHorarioModif();
+
                     label1.Text = "Empleado";
                     label1.Location = new Point(10, 10);
                     label1.Show();
@@ -182,19 +193,19 @@ namespace Gimnasio
                     label2.Text = "Horario";
                     label2.Location = new Point(130, 10);
                     label2.Show();
-                    textBox2.Location = new Point(130, 30);
+                    comboBox1.Location = new Point(130, 30);
                     textBox2.Show();
 
                     label3.Text = "Nombre (50)";
-                    label3.Location = new Point(250, 10);
+                    label3.Location = new Point(280, 10);
                     label3.Show();
-                    textBox3.Location = new Point(250, 30);
+                    textBox3.Location = new Point(280, 30);
                     textBox3.Show();
 
                     label4.Text = "Cupo";
-                    label4.Location = new Point(370, 10);
+                    label4.Location = new Point(400, 10);
                     label4.Show();
-                    textBox4.Location = new Point(370, 30);
+                    textBox4.Location = new Point(400, 30);
                     textBox4.Show();
 
                     // Posiciona los botones en las orillas de la ventana, a la izquierda aceptar y a la derecha cancelar
@@ -202,7 +213,7 @@ namespace Gimnasio
                     button_Cancelar.Location = new Point(370 + 20, 50 + 10);
 
                     // Redimensiona toda la ventana
-                    this.Width = 500;
+                    this.Width = 530;
                     this.Height = 130;
 
                     break;
@@ -436,6 +447,17 @@ namespace Gimnasio
             }
         }
 
+
+        private void SeleccionaHorarioModif()
+        {
+            foreach(string cad in listaHorarios)
+            {
+                string Id = cad.Substring(0, 1);
+                if (textBox2.Text == Id)
+                    ComboBox1.SelectedIndex = listaHorarios.IndexOf(cad);
+            }
+        }
+
         private void button_Aceptar_Click(object sender, EventArgs e) // Completa la accion
         {
             switch (tabla)
@@ -559,6 +581,33 @@ namespace Gimnasio
             this.Close();
         }
 
+        private void llenaComboHorarios()
+        {
+            
+            // Se abre la conexion con la base de datos
+            SqlConnection connection = Conexion.Conectar();
+
+            // Se crea la consulta para obtener la tabla de profesor
+            string query = "SELECT * FROM gimnasio.Horario ORDER BY HoraInicio ASC";
+
+            // Se crea el comando y se ejecuta
+            SqlCommand command = new SqlCommand(query, connection);
+
+            // Se obtiene la informacion de la tabla a partir del comando
+            SqlDataAdapter data = new SqlDataAdapter(command);
+            DataTable dataTable = new DataTable();
+            data.Fill(dataTable);
+            dataGridView1.DataSource = dataTable;
+
+            for (int i=0; i<dataGridView1.Rows.Count;i++)
+            {
+                string horario = dataGridView1.Rows[i].Cells[0].Value.ToString() + " - " + dataGridView1.Rows[i].Cells[1].Value.ToString() + " - " + dataGridView1.Rows[i].Cells[2].Value.ToString();
+                comboBox1.Items.Add(horario);
+                listaHorarios.Add(horario);
+            }
+            
+        }
+
         // Gets de todos los textbox 
         // Esto es para poder acceder a los textbox desde el form1 sin tener que asignar los textos a variables globales
         public TextBox Textbox1
@@ -609,6 +658,20 @@ namespace Gimnasio
             {
                 return textBox7;
             }
+        }
+
+        public ComboBox ComboBox1
+        {
+            get
+            {
+                return comboBox1;
+            }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string IdHorario = comboBox1.SelectedItem.ToString();
+            Textbox2.Text = IdHorario.Substring(0, 1);
         }
     }
 }

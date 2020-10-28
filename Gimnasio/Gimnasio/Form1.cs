@@ -365,6 +365,11 @@ namespace Gimnasio
             }
         }
 
+        private void LlenaComboHorarioModif()
+        {
+            throw new NotImplementedException();
+        }
+
         public void actualiza_lista_de_datos_modificar(List<string> lista, Formulario formulario)
         {
             // Añade el nombre de la lista
