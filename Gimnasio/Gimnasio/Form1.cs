@@ -199,13 +199,13 @@ namespace Gimnasio
                     v = "(IdEmpleado, IdHorario, Nombre, Cupo) VALUES(@Empleado, @Horario, @Nombre, @Cupo)";
                     break;
                 case "Pago":
-                    v = "(Suscripcion, Cliente, Total) VALUES(@Suscripcion, @Cliente, @Total)";
+                    v = "(IdSuscripcion, IdCliente, Total, Fecha) VALUES(@Suscripcion, @Cliente, @Total, @Fecha)";
                     break;
                 case "DetalleVenta":
-                    v = "(Articulo, Cantidad) VALUES(@Articulo, @Cantidad)";
+                    v = "(IdArticulo, Cantidad) VALUES(@Articulo, @Cantidad)";
                     break;
                 case "DetalleCompra":
-                    v = "(Articulo, Cantidad) VALUES(@Articulo, @Cantidad)";
+                    v = "(IdArticulo, Cantidad) VALUES(@Articulo, @Cantidad)";
                     break;
             }
 
@@ -225,19 +225,19 @@ namespace Gimnasio
                     v = "SET HoraInicio = @HoraInicio, HoraFin = @HoraFin WHERE IdHorario = @IdHorario";
                     break;
                 case "Cliente":
-                    v = "SET Nombre = @Nombre, Direccion = @Direccion, WHERE IdCliente = @IdCliente";
+                    v = "SET Nombre = @Nombre, Direccion = @Direccion WHERE IdCliente = @IdCliente";
                     break;
                 case "Clase":
                     v = "SET IdEmpleado = @Empleado, IdHorario = @Horario, Nombre = @Nombre, Cupo = @Cupo WHERE IdClase = @IdClase";
                     break;
                 case "Pago":
-                    v = "SET Suscripcion = @Suscripcion, Cliente = @Cliente, Total = @Total WHERE IdPago = @IdPago";
+                    v = "SET IdSuscripcion = @Suscripcion, IdCliente = @Cliente, Total = @Total, Fecha = @Fecha WHERE IdPago = @IdPago";
                     break;
                 case "DetalleVenta":
-                    v = "SET Articulo = @Articulo, Cantidad = @Cantidad WHERE IdDetalleVenta = @IdDetalleVenta";
+                    v = "SET IdArticulo = @Articulo, Cantidad = @Cantidad WHERE IdDetalleVenta = @IdDetalleVenta";
                     break;
                 case "DetalleCompra":
-                    v = "SET Articulo = @Articulo, Cantidad = @Cantidad WHERE IdDetalleCompra = @IdDetalleCompra";
+                    v = "SET IdArticulo = @Articulo, Cantidad = @Cantidad WHERE IdDetalleCompra = @IdDetalleCompra";
                     break;
             }
 
