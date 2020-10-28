@@ -91,11 +91,11 @@ namespace Gimnasio
                     break;
 
                 case "Cliente":
-                    label1.Text = "Empleado";
+                    /*label1.Text = "Empleado";
                     label1.Location = new Point(10, 10);
                     label1.Show();
                     textBox1.Location = new Point(10, 30);
-                    textBox1.Show();
+                    textBox1.Show();*/
 
                     label2.Text = "Nombre (50)";
                     label2.Location = new Point(130, 10);
@@ -191,11 +191,11 @@ namespace Gimnasio
                     textBox3.Location = new Point(250, 30);
                     textBox3.Show();
 
-                    label4.Text = "Cupo";
+                    /*label4.Text = "Cupo";
                     label4.Location = new Point(370, 10);
                     label4.Show();
                     textBox4.Location = new Point(370, 30);
-                    textBox4.Show();
+                    textBox4.Show();*/
 
                     // Posiciona los botones en las orillas de la ventana, a la izquierda aceptar y a la derecha cancelar
                     button_Aceptar.Location = new Point(10, 50 + 10);
@@ -359,11 +359,11 @@ namespace Gimnasio
                     textBox2.Location = new Point(130, 30);
                     textBox2.Show();
 
-                    label3.Text = "Total ($)";
+                    /*label3.Text = "Total ($)";
                     label3.Location = new Point(250, 10);
                     label3.Show();
                     textBox3.Location = new Point(250, 30);
-                    textBox3.Show();
+                    textBox3.Show();*/
 
                     // Posiciona los botones en las orillas de la ventana, a la izquierda aceptar y a la derecha cancelar
                     button_Aceptar.Location = new Point(10, 50 + 10);
@@ -417,11 +417,11 @@ namespace Gimnasio
                     textBox2.Location = new Point(130, 30);
                     textBox2.Show();
 
-                    label3.Text = "Total ($)";
+                    /*label3.Text = "Total ($)";
                     label3.Location = new Point(250, 10);
                     label3.Show();
                     textBox3.Location = new Point(250, 30);
-                    textBox3.Show();
+                    textBox3.Show();*/
 
                     // Posiciona los botones en las orillas de la ventana, a la izquierda aceptar y a la derecha cancelar
                     button_Aceptar.Location = new Point(10, 50 + 10);

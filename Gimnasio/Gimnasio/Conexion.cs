@@ -29,7 +29,7 @@ namespace Gimnasio
 
         // Se crea la cadena con la que se va a conectar a la base de datos.
         //private const string ConnectionString = "SERVER=MR-ICIO\\SQLEXPRESS;" +
-        private const string ConnectionString = "SERVER=MR-ICIO\\SQLEXPRESS;" +
+        private const string ConnectionString = "SERVER=DESKTOP-DVAR0RA\\SQLEXPRESS;" +
                                                 "DATABASE=Gimnasio;" +
                                                 "integrated security=true;";
 

@@ -192,6 +192,21 @@ namespace Gimnasio
                 case "Horario":
                     v = "(HoraInicio, HoraFin) VALUES(@HoraInicio, @HoraFin)";
                     break;
+                case "Cliente":
+                    v = "(Nombre, Direccion) VALUES(@Nombre, @Direccion)";
+                    break;
+                case "Clase":
+                    v = "(Empleado, Horario, Nombre) VALUES(@Empleado, @Horario, @Nombre)";
+                    break;
+                case "Pago":
+                    v = "(Suscripcion, Cliente, Total) VALUES(@Suscripcion, @Cliente, @Total)";
+                    break;
+                case "DetalleVenta":
+                    v = "(Articulo, Cantidad) VALUES(@Articulo, @Cantidad)";
+                    break;
+                case "DetalleCompra":
+                    v = "(Articulo, Cantidad) VALUES(@Articulo, @Cantidad)";
+                    break;
             }
 
             return v;
@@ -209,6 +224,21 @@ namespace Gimnasio
                 case "Horario":
                     v = "SET HoraInicio = @HoraInicio, HoraFin = @HoraFin WHERE IdHorario = @IdHorario";
                     break;
+                case "Cliente":
+                    v = "SET Nombre = @Nombre, Direccion = @Direccion, WHERE IdCliente = @IdCliente";
+                    break;
+                case "Clase":
+                    v = "SET Empleado = @Empleado, Horario = @Horario, Nombre, @Nombre WHERE IdClase = @IdClase";
+                    break;
+                case "Pago":
+                    v = "SET Suscripcion = @Suscripcion, Cliente = @Cliente, Total = @Total WHERE IdPago = @IdPago";
+                    break;
+                case "DetalleVenta":
+                    v = "SET Articulo = @Articulo, Cantidad = @Cantidad WHERE IdDetalleVenta = @IdDetalleVenta";
+                    break;
+                case "DetalleCompra":
+                    v = "SET Articulo = @Articulo, Cantidad = @Cantidad WHERE IdDetalleCompra = @IdDetalleCompra";
+                    break;
             }
 
             return v;
@@ -225,6 +255,21 @@ namespace Gimnasio
                     break;
                 case "Horario":
                     v = "WHERE IdHorario = @IdHorario";
+                    break;
+                case "Cliente":
+                    v = "WHERE IdCliente = @IdCliente";
+                    break;
+                case "Clase":
+                    v = "WHERE IdClase = @IdClase";
+                    break;
+                case "Pago":
+                    v = "WHERE IdPago = @IdPago";
+                    break;
+                case "DetalleVenta":
+                    v = "WHERE IdDetalleVenta = @IdDetalleVenta";
+                    break;
+                case "DetalleCompra":
+                    v = "WHERE IdDetalleCompra = @IdDetalleCompra";
                     break;
             }
 
@@ -251,6 +296,30 @@ namespace Gimnasio
                     lista.Add(formulario.Textbox1.Text);
                     lista.Add(formulario.Textbox2.Text);
                     break;
+                case "Cliente":
+                    //lista.Add(formulario.Textbox1.Text);
+                    lista.Add(formulario.Textbox2.Text);
+                    lista.Add(formulario.Textbox3.Text);
+                    break;
+                case "Clase":
+                    lista.Add(formulario.Textbox1.Text);
+                    lista.Add(formulario.Textbox2.Text);
+                    lista.Add(formulario.Textbox3.Text);
+                    break;
+                case "Pago":
+                    lista.Add(formulario.Textbox1.Text);
+                    lista.Add(formulario.Textbox2.Text);
+                    lista.Add(formulario.Textbox3.Text);
+                    lista.Add(formulario.Textbox4.Text);
+                    break;
+                case "DetalleVenta":
+                    lista.Add(formulario.Textbox1.Text);
+                    lista.Add(formulario.Textbox2.Text);
+                    break;
+                case "DetalleCompra":
+                    lista.Add(formulario.Textbox1.Text);
+                    lista.Add(formulario.Textbox2.Text);
+                    break;
             }
         }
 
@@ -265,6 +334,29 @@ namespace Gimnasio
                     formulario.Textbox3.Text = dataGridView.SelectedCells[3].Value.ToString();
                     break;
                 case "Horario":
+                    formulario.Textbox1.Text = dataGridView.SelectedCells[1].Value.ToString();
+                    formulario.Textbox2.Text = dataGridView.SelectedCells[2].Value.ToString();
+                    break;
+                case "Cliente":
+                    formulario.Textbox1.Text = dataGridView.SelectedCells[1].Value.ToString();
+                    formulario.Textbox2.Text = dataGridView.SelectedCells[2].Value.ToString();
+                    break;
+                case "Clase":
+                    formulario.Textbox1.Text = dataGridView.SelectedCells[1].Value.ToString();
+                    formulario.Textbox2.Text = dataGridView.SelectedCells[2].Value.ToString();
+                    formulario.Textbox3.Text = dataGridView.SelectedCells[3].Value.ToString();
+                    break;
+                case "Pago":
+                    formulario.Textbox1.Text = dataGridView.SelectedCells[1].Value.ToString();
+                    formulario.Textbox2.Text = dataGridView.SelectedCells[2].Value.ToString();
+                    formulario.Textbox3.Text = dataGridView.SelectedCells[3].Value.ToString();
+                    formulario.Textbox4.Text = dataGridView.SelectedCells[4].Value.ToString();
+                    break;
+                case "DetalleVenta":
+                    formulario.Textbox1.Text = dataGridView.SelectedCells[1].Value.ToString();
+                    formulario.Textbox2.Text = dataGridView.SelectedCells[2].Value.ToString();
+                    break;
+                case "DetalleCompra":
                     formulario.Textbox1.Text = dataGridView.SelectedCells[1].Value.ToString();
                     formulario.Textbox2.Text = dataGridView.SelectedCells[2].Value.ToString();
                     break;
@@ -289,6 +381,29 @@ namespace Gimnasio
                     lista.Add(formulario.Textbox1.Text);
                     lista.Add(formulario.Textbox2.Text);
                     break;
+                case "Cliente":
+                    lista.Add(formulario.Textbox2.Text);
+                    lista.Add(formulario.Textbox3.Text);
+                    break;
+                case "Clase":
+                    lista.Add(formulario.Textbox1.Text);
+                    lista.Add(formulario.Textbox2.Text);
+                    lista.Add(formulario.Textbox3.Text);
+                    break;
+                case "Pago":
+                    lista.Add(formulario.Textbox1.Text);
+                    lista.Add(formulario.Textbox2.Text);
+                    lista.Add(formulario.Textbox3.Text);
+                    lista.Add(formulario.Textbox4.Text);
+                    break;
+                case "DetalleVenta":
+                    lista.Add(formulario.Textbox1.Text);
+                    lista.Add(formulario.Textbox2.Text);
+                    break;
+                case "DetalleCompra":
+                    lista.Add(formulario.Textbox1.Text);
+                    lista.Add(formulario.Textbox2.Text);
+                    break;
             }
         }
 
@@ -307,6 +422,29 @@ namespace Gimnasio
                 case "Horario":
                     comando.Parameters.AddWithValue("@HoraInicio", datos[1]);
                     comando.Parameters.AddWithValue("@HoraFin", datos[2]);
+                    break;
+                case "Cliente":
+                    comando.Parameters.AddWithValue("@Nombre", datos[1]);
+                    comando.Parameters.AddWithValue("@Direccion", datos[2]);
+                    break;
+                case "Clase":
+                    comando.Parameters.AddWithValue("@Empleado", datos[1]);
+                    comando.Parameters.AddWithValue("@Horario", datos[2]);
+                    comando.Parameters.AddWithValue("@Nombre", datos[3]);
+                    break;
+                case "Pago":
+                    comando.Parameters.AddWithValue("@Suscripcion", datos[1]);
+                    comando.Parameters.AddWithValue("@Cliente", datos[2]);
+                    comando.Parameters.AddWithValue("@Total", datos[3]);
+                    comando.Parameters.AddWithValue("@Fecha", datos[4]);
+                    break;
+                case "DetalleVenta":
+                    comando.Parameters.AddWithValue("@Articulo", datos[1]);
+                    comando.Parameters.AddWithValue("@Cantidad", datos[2]);
+                    break;
+                case "DetalleCompra":
+                    comando.Parameters.AddWithValue("@Articulo", datos[1]);
+                    comando.Parameters.AddWithValue("@Cantidad", datos[2]);
                     break;
 
             }
@@ -328,6 +466,34 @@ namespace Gimnasio
                     comando.Parameters.AddWithValue("@HoraFin", datos[2]);
                     comando.Parameters.AddWithValue("@IdHorario", dataGridView.SelectedCells[0].Value.ToString());
                     break;
+                case "Cliente":
+                    comando.Parameters.AddWithValue("@Nombre", datos[1]);
+                    comando.Parameters.AddWithValue("@Direccion", datos[2]);
+                    comando.Parameters.AddWithValue("@IdCliente", dataGridView.SelectedCells[0].Value.ToString());
+                    break;
+                case "Clase":
+                    comando.Parameters.AddWithValue("@Empleado", datos[1]);
+                    comando.Parameters.AddWithValue("@Horario", datos[2]);
+                    comando.Parameters.AddWithValue("@Nombre", datos[3]);
+                    comando.Parameters.AddWithValue("@IdClase", dataGridView.SelectedCells[0].Value.ToString());
+                    break;
+                case "Pago":
+                    comando.Parameters.AddWithValue("@Suscripcion", datos[1]);
+                    comando.Parameters.AddWithValue("@Cliente", datos[2]);
+                    comando.Parameters.AddWithValue("@Total", datos[3]);
+                    comando.Parameters.AddWithValue("@Fecha", datos[4]);
+                    comando.Parameters.AddWithValue("@IdPago", dataGridView.SelectedCells[0].Value.ToString());
+                    break;
+                case "DetalleVenta":
+                    comando.Parameters.AddWithValue("@Articulo", datos[1]);
+                    comando.Parameters.AddWithValue("@Cantidad", datos[2]);
+                    comando.Parameters.AddWithValue("@IdDetalleVenta", dataGridView.SelectedCells[0].Value.ToString());
+                    break;
+                case "DetalleCompra":
+                    comando.Parameters.AddWithValue("@Articulo", datos[1]);
+                    comando.Parameters.AddWithValue("@Cantidad", datos[2]);
+                    comando.Parameters.AddWithValue("@IdDetalleCompra", dataGridView.SelectedCells[0].Value.ToString());
+                    break;
             }
         }
 
@@ -341,6 +507,22 @@ namespace Gimnasio
                     break;
                 case "Horario":
                     comando.Parameters.AddWithValue("@IdHorario", dataGridView.SelectedCells[0].Value.ToString());
+                    break;
+                case "Cliente":
+                    comando.Parameters.AddWithValue("@IdCliente", dataGridView.SelectedCells[0].Value.ToString());
+                    break;
+                case "Clase":
+                    comando.Parameters.AddWithValue("@IdClase", dataGridView.SelectedCells[0].Value.ToString());
+                    break;
+                case "Pago":
+                    comando.Parameters.AddWithValue("@IdPago", dataGridView.SelectedCells[0].Value.ToString());
+                    break;
+                case "DetalleVenta":
+                    comando.Parameters.AddWithValue("@IdDetalleVenta", dataGridView.SelectedCells[0].Value.ToString());
+                    break;
+                case "DetalleCompra":
+                    comando.Parameters.AddWithValue("@IdDetalleCompra" +
+                        "", dataGridView.SelectedCells[0].Value.ToString());
                     break;
             }
         }
