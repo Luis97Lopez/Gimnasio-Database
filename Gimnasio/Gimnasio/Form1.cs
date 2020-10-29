@@ -219,6 +219,9 @@ namespace Gimnasio
                 case "Venta":
                     v = "(IdEmpleado, IdDetalleVenta, Fecha) VALUES (@IdEmpleado, @IdDetalleVenta, @Fecha)";
                     break;
+                case "Compra":
+                    v = "(IdEmpleado, IdDetalleCompra, Fecha) VALUES (@IdEmpleado, @IdDetalleCompra, @Fecha)";
+                    break;
             }
 
             return v;
@@ -263,6 +266,9 @@ namespace Gimnasio
                     break;
                 case "Venta":
                     v = "SET IdEmpleado = @IdEmpleado, IdDetalleVenta = @IdDetalleVenta, Fecha = @Fecha  WHERE IdVenta = @IdVenta";
+                    break;
+                case "Compra":
+                    v = "SET IdEmpleado = @IdEmpleado, IdDetalleCompra = @IdDetalleCompra, Fecha = @Fecha  WHERE IdCompra = @IdCompra";
                     break;
             }
 
@@ -372,6 +378,11 @@ namespace Gimnasio
                     lista.Add(formulario.Textbox2.Text);
                     lista.Add(formulario.Textbox3.Text);
                     break;
+                case "Compra":
+                    lista.Add(formulario.Textbox1.Text);
+                    lista.Add(formulario.Textbox2.Text);
+                    lista.Add(formulario.Textbox3.Text);
+                    break;
             }
         }
 
@@ -461,6 +472,21 @@ namespace Gimnasio
                     #endregion
                     formulario.Textbox3.Text = fecha2;
                     break;
+                case "Compra":
+                    formulario.Textbox1.Text = dataGridView.SelectedCells[1].Value.ToString();
+                    formulario.Textbox2.Text = dataGridView.SelectedCells[2].Value.ToString();
+                    #region Quita el formato de fecha y lo convierte a cadena
+                    string fecha3 = "";
+                    string fechaAux3 = dataGridView.SelectedCells[3].Value.ToString();
+                    fecha3 = fechaAux3.Substring(0, 10);
+                    fechaAux3 = fecha3.Replace("/", "");
+
+                    fecha3 = fechaAux3.Substring(4);
+                    fecha3 += fechaAux3.Substring(2, 2);
+                    fecha3 += fechaAux3.Substring(0, 2);
+                    #endregion
+                    formulario.Textbox3.Text = fecha3;
+                    break;
 
 
             }
@@ -534,6 +560,11 @@ namespace Gimnasio
                     lista.Add(formulario.Textbox2.Text);
                     lista.Add(formulario.Textbox3.Text);
                     break;
+                case "Compra":
+                    lista.Add(formulario.Textbox1.Text);
+                    lista.Add(formulario.Textbox2.Text);
+                    lista.Add(formulario.Textbox3.Text);
+                    break;
             }
         }
 
@@ -601,6 +632,11 @@ namespace Gimnasio
                 case "Venta":
                     comando.Parameters.AddWithValue("@IdEmpleado", datos[1]);
                     comando.Parameters.AddWithValue("@IdDetalleVenta", datos[2]);
+                    comando.Parameters.AddWithValue("@Fecha", datos[3]);
+                    break;
+                case "Compra":
+                    comando.Parameters.AddWithValue("@IdEmpleado", datos[1]);
+                    comando.Parameters.AddWithValue("@IdDetalleCompra", datos[2]);
                     comando.Parameters.AddWithValue("@Fecha", datos[3]);
                     break;
 
@@ -681,6 +717,12 @@ namespace Gimnasio
                     comando.Parameters.AddWithValue("@IdDetalleVenta", datos[2]);
                     comando.Parameters.AddWithValue("@Fecha", datos[3]);
                     comando.Parameters.AddWithValue("@IdVenta", dataGridView.SelectedCells[0].Value.ToString());
+                    break;
+                case "Compra":
+                    comando.Parameters.AddWithValue("@IdEmpleado", datos[1]);
+                    comando.Parameters.AddWithValue("@IdDetalleCompra", datos[2]);
+                    comando.Parameters.AddWithValue("@Fecha", datos[3]);
+                    comando.Parameters.AddWithValue("@IdCompra", dataGridView.SelectedCells[0].Value.ToString());
                     break;
 
             }

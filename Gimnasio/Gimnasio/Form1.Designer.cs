@@ -317,6 +317,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "form_gimnasio";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Formulario Gimnasio";
             this.Load += new System.EventHandler(this.form_gimnasio_Load);
             this.tabControl_Tablas.ResumeLayout(false);

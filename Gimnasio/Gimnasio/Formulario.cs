@@ -24,6 +24,7 @@ namespace Gimnasio
         public List<string> listaClientes = new List<string>();
         public List<string> listaClases = new List<string>();
         public List<string> listaDetVenta = new List<string>();
+        public List<string> listaDetCompra = new List<string>();
 
         public Formulario(string tbl)
         {
@@ -434,30 +435,40 @@ namespace Gimnasio
                     break;
 
                 case "Compra":
+                    tablaActual = tabla;
+                    llenaComboEmpleados();
+                    llenaComboDetallesCompra();
+                    if (textBox1.Text != string.Empty && textBox2.Text != string.Empty) //Si es modificación selecciona el item adecuado del combobox.
+                    {
+                        SeleccionaEmpleadoModif();
+                        SeleccionaDetCompraModif();
+                    }
+
+
                     label1.Text = "Empleado";
                     label1.Location = new Point(10, 10);
                     label1.Show();
-                    textBox1.Location = new Point(10, 30);
+                    cbEmpleados.Location = new Point(10, 30);
                     textBox1.Show();
 
                     label2.Text = "DetalleCompra";
-                    label2.Location = new Point(130, 10);
+                    label2.Location = new Point(155, 10);
                     label2.Show();
-                    textBox2.Location = new Point(130, 30);
+                    cbDetalleCompra.Location = new Point(155, 30);
                     textBox2.Show();
 
                     label3.Text = "Fecha (Año-Mes-Día)";
-                    label3.Location = new Point(250, 10);
+                    label3.Location = new Point(300, 10);
                     label3.Show();
-                    textBox3.Location = new Point(250, 30);
+                    textBox3.Location = new Point(300, 30);
                     textBox3.Show();
 
                     // Posiciona los botones en las orillas de la ventana, a la izquierda aceptar y a la derecha cancelar
                     button_Aceptar.Location = new Point(10, 50 + 10);
-                    button_Cancelar.Location = new Point(250 + 20, 50 + 10);
+                    button_Cancelar.Location = new Point(260 + 20, 50 + 10);
 
                     // Redimensiona toda la ventana
-                    this.Width = 380;
+                    this.Width = 430;
                     this.Height = 130;
 
                     break;
@@ -540,6 +551,10 @@ namespace Gimnasio
                         if (textBox1.Text == Id)
                             cbEmpleados.SelectedIndex = listaEmpleados.IndexOf(cad);
                         break;
+                    case "Compra":
+                        if (textBox1.Text == Id)
+                            cbEmpleados.SelectedIndex = listaEmpleados.IndexOf(cad);
+                        break;
                 }
 
             }
@@ -600,6 +615,25 @@ namespace Gimnasio
                     case "Venta":
                         if (textBox2.Text == Id)
                             cbDetalleVenta.SelectedIndex = listaDetVenta.IndexOf(cad);
+                        break;
+                }
+
+            }
+        }
+
+        /// <summary>
+        /// Método que selecciona el detalle de compra a modificar en el combobox de detalle de compra.
+        /// </summary>
+        private void SeleccionaDetCompraModif()
+        {
+            foreach (string cad in listaDetCompra)
+            {
+                string Id = cad.Substring(0, 1);
+                switch (tablaActual)
+                {
+                    case "Compra":
+                        if (textBox2.Text == Id)
+                            cbDetalleCompra.SelectedIndex = listaDetCompra.IndexOf(cad);
                         break;
                 }
 
@@ -773,6 +807,18 @@ namespace Gimnasio
                         MessageBox.Show("ERROR - Los campos no pueden quedar vacios.");
                     }
                     break;
+                case "Compra":
+                    // Checa que los controles no estén vacios ni que las cadenas sobrepasen la longitud correspondiente
+                    if (textBox1.Text != "" && textBox2.Text != "" && textBox3.Text != "")
+                    {
+                        band_aceptar = true;
+                        this.Close();
+                    }
+                    else // Al menos un textbox está vacio
+                    {
+                        MessageBox.Show("ERROR - Los campos no pueden quedar vacios.");
+                    }
+                    break;
             }
         }
 
@@ -935,6 +981,35 @@ namespace Gimnasio
 
         }
 
+        /// <summary>
+        /// Método para llenar el combobox con los detalles de compra existentes en la tabla.
+        /// </summary>
+        private void llenaComboDetallesCompra()
+        {
+
+            // Se abre la conexion con la base de datos
+            SqlConnection connection = Conexion.Conectar();
+
+            // Se crea la consulta para obtener la tabla de profesor
+            string query = "SELECT IdDetalleCompra FROM gimnasio.DetalleCompra";
+
+            // Se crea el comando y se ejecuta
+            SqlCommand command = new SqlCommand(query, connection);
+
+            // Se obtiene la informacion de la tabla a partir del comando
+            SqlDataAdapter data = new SqlDataAdapter(command);
+            DataTable dataTable = new DataTable();
+            data.Fill(dataTable);
+            dataGridView1.DataSource = dataTable;
+
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                string detCompra = dataGridView1.Rows[i].Cells[0].Value.ToString();
+                cbDetalleCompra.Items.Add(detCompra);
+                listaDetCompra.Add(detCompra);
+            }
+
+        }
 
         // Gets de todos los textbox 
         // Esto es para poder acceder a los textbox desde el form1 sin tener que asignar los textos a variables globales
@@ -1035,6 +1110,10 @@ namespace Gimnasio
                 case "Venta":
                     Textbox1.Text = IdHorario.Substring(0, 1);
                     break;
+
+                case "Compra":
+                    Textbox1.Text = IdHorario.Substring(0, 1);
+                    break;
             }
         }
 
@@ -1069,6 +1148,17 @@ namespace Gimnasio
             switch (tablaActual)
             {
                 case "Venta":
+                    Textbox2.Text = IdHorario.Substring(0, 1);
+                    break;
+            }
+        }
+
+        private void cbDetalleCompra_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string IdHorario = cbDetalleCompra.SelectedItem.ToString();
+            switch (tablaActual)
+            {
+                case "Compra":
                     Textbox2.Text = IdHorario.Substring(0, 1);
                     break;
             }
