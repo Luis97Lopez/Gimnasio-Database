@@ -302,6 +302,21 @@ namespace Gimnasio
                 case "DetalleCompra":
                     v = "WHERE IdDetalleCompra = @IdDetalleCompra";
                     break;
+                case "Empleado":
+                    v = "WHERE IdEmpleado = @IdEmpleado";
+                    break;
+                case "Suscripcion":
+                    v = "WHERE IdSuscripcion = @IdSuscripcion";
+                    break;
+                case "Inscripcion":
+                    v = "WHERE IdInscripcion = @IdInscripcion";
+                    break;
+                case "Venta":
+                    v = "WHERE Identa = @IdVenta";
+                    break;
+                case "Compra":
+                    v = "WHERE IdCompra = @IdCompra";
+                    break;
             }
 
             return v;
@@ -753,6 +768,21 @@ namespace Gimnasio
                     break;
                 case "DetalleCompra":
                     comando.Parameters.AddWithValue("@IdDetalleCompra", dataGridView.SelectedCells[0].Value.ToString());
+                    break;
+                case "Empleado":
+                    comando.Parameters.AddWithValue("@IdEmpleado", dataGridView.SelectedCells[0].Value.ToString());
+                    break;
+                case "Suscripcion":
+                    comando.Parameters.AddWithValue("@IdSuscripcion", dataGridView.SelectedCells[0].Value.ToString());
+                    break;
+                case "Inscripcion":
+                    comando.Parameters.AddWithValue("@IdInscripcion", dataGridView.SelectedCells[0].Value.ToString());
+                    break;
+                case "Venta":
+                    comando.Parameters.AddWithValue("@IdVenta", dataGridView.SelectedCells[0].Value.ToString());
+                    break;
+                case "Compra":
+                    comando.Parameters.AddWithValue("@IdCompra", dataGridView.SelectedCells[0].Value.ToString());
                     break;
             }
         }
