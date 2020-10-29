@@ -207,6 +207,18 @@ namespace Gimnasio
                 case "DetalleCompra":
                     v = "(IdArticulo, Cantidad) VALUES(@Articulo, @Cantidad)";
                     break;
+                case "Empleado":
+                    v = "(IdHorario, Nombre, Celular, Sueldo, Dias) VALUES (@IdHorario, @Nombre, @Celular, @Sueldo, @Dias)";
+                    break;
+                case "Suscripcion":
+                    v = "(IdEmpleado, IdCliente, Precio, Duracion, Tipo, Fecha, Estado) VALUES (@IdEmpleado, @IdCliente, @Precio, @Duracion, @Tipo, @Fecha, @Estado)";
+                    break;
+                case "Inscripcion":
+                    v = "(IdClase, IdCliente) VALUES (@IdClase, @IdCliente)";
+                    break;
+                case "Venta":
+                    v = "(IdEmpleado, IdDetalleVenta, Fecha) VALUES (@IdEmpleado, @IdDetalleVenta, @Fecha)";
+                    break;
             }
 
             return v;
@@ -238,6 +250,19 @@ namespace Gimnasio
                     break;
                 case "DetalleCompra":
                     v = "SET IdArticulo = @Articulo, Cantidad = @Cantidad WHERE IdDetalleCompra = @IdDetalleCompra";
+                    break;
+
+                case "Empleado":
+                    v = "SET IdHorario = @IdHorario, Nombre = @Nombre, Celular = @Celular, Sueldo = @Sueldo, Dias = @Dias WHERE IdEmpleado = @IdEmpleado";
+                    break;
+                case "Suscripcion":
+                    v = "SET IdEmpleado = @IdEmpleado, IdCLiente = @IdCliente, Precio = @Precio, Duracion=@Duracion, Tipo = @Tipo, Fecha = @Fecha, Estado = @Estado  WHERE IdSuscripcion = @IdSuscripcion";
+                    break;
+                case "Inscripcion":
+                    v = "SET IdClase = @IdClase, IdCliente = @IdCLiente WHERE IdInscripcion = @IdInscripcion";
+                    break;
+                case "Venta":
+                    v = "SET IdEmpleado = @IdEmpleado, IdDetalleVenta = @IdDetalleVenta, Fecha = @Fecha  WHERE IdVenta = @IdVenta";
                     break;
             }
 
@@ -321,6 +346,32 @@ namespace Gimnasio
                     lista.Add(formulario.Textbox1.Text);
                     lista.Add(formulario.Textbox2.Text);
                     break;
+
+                case "Empleado":
+                    lista.Add(formulario.Textbox1.Text);
+                    lista.Add(formulario.Textbox2.Text);
+                    lista.Add(formulario.Textbox3.Text);
+                    lista.Add(formulario.Textbox4.Text);
+                    lista.Add(formulario.Textbox5.Text);
+                    break;
+                case "Suscripcion":
+                    lista.Add(formulario.Textbox1.Text);
+                    lista.Add(formulario.Textbox2.Text);
+                    lista.Add(formulario.Textbox3.Text);
+                    lista.Add(formulario.Textbox4.Text);
+                    lista.Add(formulario.Textbox5.Text);
+                    lista.Add(formulario.Textbox6.Text);
+                    lista.Add(formulario.Textbox7.Text);
+                    break;
+                case "Inscripcion":
+                    lista.Add(formulario.Textbox1.Text);
+                    lista.Add(formulario.Textbox2.Text);
+                    break;
+                case "Venta":
+                    lista.Add(formulario.Textbox1.Text);
+                    lista.Add(formulario.Textbox2.Text);
+                    lista.Add(formulario.Textbox3.Text);
+                    break;
             }
         }
 
@@ -362,6 +413,56 @@ namespace Gimnasio
                     formulario.Textbox1.Text = dataGridView.SelectedCells[1].Value.ToString();
                     formulario.Textbox2.Text = dataGridView.SelectedCells[2].Value.ToString();
                     break;
+
+                case "Empleado":
+                    formulario.Textbox1.Text = dataGridView.SelectedCells[1].Value.ToString();
+                    formulario.Textbox2.Text = dataGridView.SelectedCells[2].Value.ToString();
+                    formulario.Textbox3.Text = dataGridView.SelectedCells[3].Value.ToString();
+                    formulario.Textbox4.Text = dataGridView.SelectedCells[4].Value.ToString();
+                    formulario.Textbox5.Text = dataGridView.SelectedCells[5].Value.ToString();
+                    break;
+                case "Suscripcion":
+                    formulario.Textbox1.Text = dataGridView.SelectedCells[1].Value.ToString();
+                    formulario.Textbox2.Text = dataGridView.SelectedCells[2].Value.ToString();
+                    formulario.Textbox3.Text = dataGridView.SelectedCells[3].Value.ToString();
+                    formulario.Textbox4.Text = dataGridView.SelectedCells[4].Value.ToString();
+                    formulario.Textbox5.Text = dataGridView.SelectedCells[5].Value.ToString();
+
+                    #region Quita el formato de fecha y lo convierte a cadena
+                    string fecha = "";
+                    string fechaAux = dataGridView.SelectedCells[6].Value.ToString();
+                    fecha = fechaAux.Substring(0,10);
+                    fechaAux = fecha.Replace("/", "");
+
+                    fecha = fechaAux.Substring(4);
+                    fecha += fechaAux.Substring(2,2);
+                    fecha += fechaAux.Substring(0, 2);
+                    #endregion
+
+                    formulario.Textbox6.Text = fecha;
+                    formulario.Textbox7.Text = dataGridView.SelectedCells[7].Value.ToString();
+                    break;
+                case "Inscripcion":
+                    formulario.Textbox1.Text = dataGridView.SelectedCells[1].Value.ToString();
+                    formulario.Textbox2.Text = dataGridView.SelectedCells[2].Value.ToString();
+                    break;
+                case "Venta":
+                    formulario.Textbox1.Text = dataGridView.SelectedCells[1].Value.ToString();
+                    formulario.Textbox2.Text = dataGridView.SelectedCells[2].Value.ToString();
+                    #region Quita el formato de fecha y lo convierte a cadena
+                    string fecha2 = "";
+                    string fechaAux2 = dataGridView.SelectedCells[3].Value.ToString();
+                    fecha2 = fechaAux2.Substring(0, 10);
+                    fechaAux2 = fecha2.Replace("/", "");
+
+                    fecha2 = fechaAux2.Substring(4);
+                    fecha2 += fechaAux2.Substring(2, 2);
+                    fecha2 += fechaAux2.Substring(0, 2);
+                    #endregion
+                    formulario.Textbox3.Text = fecha2;
+                    break;
+
+
             }
         }
 
@@ -407,6 +508,32 @@ namespace Gimnasio
                     lista.Add(formulario.Textbox1.Text);
                     lista.Add(formulario.Textbox2.Text);
                     break;
+                    
+                case "Empleado":
+                    lista.Add(formulario.Textbox1.Text);
+                    lista.Add(formulario.Textbox2.Text);
+                    lista.Add(formulario.Textbox3.Text);
+                    lista.Add(formulario.Textbox4.Text);
+                    lista.Add(formulario.Textbox5.Text);
+                    break;
+                case "Suscripcion":
+                    lista.Add(formulario.Textbox1.Text);
+                    lista.Add(formulario.Textbox2.Text);
+                    lista.Add(formulario.Textbox3.Text);
+                    lista.Add(formulario.Textbox4.Text);
+                    lista.Add(formulario.Textbox5.Text);
+                    lista.Add(formulario.Textbox6.Text);
+                    lista.Add(formulario.Textbox7.Text);
+                    break;
+                case "Inscripcion":
+                    lista.Add(formulario.Textbox1.Text);
+                    lista.Add(formulario.Textbox2.Text);
+                    break;
+                case "Venta":
+                    lista.Add(formulario.Textbox1.Text);
+                    lista.Add(formulario.Textbox2.Text);
+                    lista.Add(formulario.Textbox3.Text);
+                    break;
             }
         }
 
@@ -449,6 +576,32 @@ namespace Gimnasio
                 case "DetalleCompra":
                     comando.Parameters.AddWithValue("@Articulo", datos[1]);
                     comando.Parameters.AddWithValue("@Cantidad", datos[2]);
+                    break;
+                
+                case "Empleado":
+                    comando.Parameters.AddWithValue("@IdHorario", datos[1]);
+                    comando.Parameters.AddWithValue("@Nombre", datos[2]);
+                    comando.Parameters.AddWithValue("@Celular", datos[3]);
+                    comando.Parameters.AddWithValue("@Sueldo", datos[4]);
+                    comando.Parameters.AddWithValue("@Dias", datos[5]);
+                    break;
+                case "Suscripcion":
+                    comando.Parameters.AddWithValue("@IdEmpleado", datos[1]);
+                    comando.Parameters.AddWithValue("@IdCliente", datos[2]);
+                    comando.Parameters.AddWithValue("@Precio", datos[3]);
+                    comando.Parameters.AddWithValue("@Duracion", datos[4]);
+                    comando.Parameters.AddWithValue("@Tipo", datos[5]);
+                    comando.Parameters.AddWithValue("@Fecha", datos[6]);
+                    comando.Parameters.AddWithValue("@Estado", datos[7]);
+                    break;
+                case "Inscripcion":
+                    comando.Parameters.AddWithValue("@IdClase", datos[1]);
+                    comando.Parameters.AddWithValue("@IdCliente", datos[2]);
+                    break;
+                case "Venta":
+                    comando.Parameters.AddWithValue("@IdEmpleado", datos[1]);
+                    comando.Parameters.AddWithValue("@IdDetalleVenta", datos[2]);
+                    comando.Parameters.AddWithValue("@Fecha", datos[3]);
                     break;
 
             }
@@ -499,6 +652,37 @@ namespace Gimnasio
                     comando.Parameters.AddWithValue("@Cantidad", datos[2]);
                     comando.Parameters.AddWithValue("@IdDetalleCompra", dataGridView.SelectedCells[0].Value.ToString());
                     break;
+                
+                case "Empleado":
+                    comando.Parameters.AddWithValue("@IdHorario", datos[1]);
+                    comando.Parameters.AddWithValue("@Nombre", datos[2]);
+                    comando.Parameters.AddWithValue("@Celular", datos[3]);
+                    comando.Parameters.AddWithValue("@Sueldo", datos[4]);
+                    comando.Parameters.AddWithValue("@Dias", datos[5]);
+                    comando.Parameters.AddWithValue("@IdEmpleado", dataGridView.SelectedCells[0].Value.ToString());
+                    break;
+                case "Suscripcion":
+                    comando.Parameters.AddWithValue("@IdEmpleado", datos[1]);
+                    comando.Parameters.AddWithValue("@IdCliente", datos[2]);
+                    comando.Parameters.AddWithValue("@Precio", datos[3]);
+                    comando.Parameters.AddWithValue("@Duracion", datos[4]);
+                    comando.Parameters.AddWithValue("@Tipo", datos[5]);
+                    comando.Parameters.AddWithValue("@Fecha", datos[6]);
+                    comando.Parameters.AddWithValue("@Estado", datos[7]);
+                    comando.Parameters.AddWithValue("@IdSuscripcion", dataGridView.SelectedCells[0].Value.ToString());
+                    break;
+                case "Inscripcion":
+                    comando.Parameters.AddWithValue("@IdClase", datos[1]);
+                    comando.Parameters.AddWithValue("@IdCliente", datos[2]);
+                    comando.Parameters.AddWithValue("@IdInscripcion", dataGridView.SelectedCells[0].Value.ToString());
+                    break;
+                case "Venta":
+                    comando.Parameters.AddWithValue("@IdEmpleado", datos[1]);
+                    comando.Parameters.AddWithValue("@IdDetalleVenta", datos[2]);
+                    comando.Parameters.AddWithValue("@Fecha", datos[3]);
+                    comando.Parameters.AddWithValue("@IdVenta", dataGridView.SelectedCells[0].Value.ToString());
+                    break;
+
             }
         }
 

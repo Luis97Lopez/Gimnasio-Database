@@ -44,8 +44,12 @@
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.button_Aceptar = new System.Windows.Forms.Button();
             this.button_Cancelar = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbHorarios = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.cbEmpleados = new System.Windows.Forms.ComboBox();
+            this.cbClientes = new System.Windows.Forms.ComboBox();
+            this.cbClases = new System.Windows.Forms.ComboBox();
+            this.cbDetalleVenta = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -79,7 +83,7 @@
             // textBox1
             // 
             this.textBox1.AccessibleName = "textbox_1";
-            this.textBox1.Location = new System.Drawing.Point(16, 30);
+            this.textBox1.Location = new System.Drawing.Point(132, 138);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 3;
@@ -182,14 +186,14 @@
             this.button_Cancelar.UseVisualStyleBackColor = true;
             this.button_Cancelar.Click += new System.EventHandler(this.button_Cancelar_Click);
             // 
-            // comboBox1
+            // cbHorarios
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(16, 259);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(135, 21);
-            this.comboBox1.TabIndex = 16;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.cbHorarios.FormattingEnabled = true;
+            this.cbHorarios.Location = new System.Drawing.Point(16, 259);
+            this.cbHorarios.Name = "cbHorarios";
+            this.cbHorarios.Size = new System.Drawing.Size(135, 21);
+            this.cbHorarios.TabIndex = 16;
+            this.cbHorarios.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // dataGridView1
             // 
@@ -200,13 +204,53 @@
             this.dataGridView1.Size = new System.Drawing.Size(240, 150);
             this.dataGridView1.TabIndex = 17;
             // 
+            // cbEmpleados
+            // 
+            this.cbEmpleados.FormattingEnabled = true;
+            this.cbEmpleados.Location = new System.Drawing.Point(16, 298);
+            this.cbEmpleados.Name = "cbEmpleados";
+            this.cbEmpleados.Size = new System.Drawing.Size(135, 21);
+            this.cbEmpleados.TabIndex = 18;
+            this.cbEmpleados.SelectedIndexChanged += new System.EventHandler(this.cbEmpleados_SelectedIndexChanged);
+            // 
+            // cbClientes
+            // 
+            this.cbClientes.FormattingEnabled = true;
+            this.cbClientes.Location = new System.Drawing.Point(16, 340);
+            this.cbClientes.Name = "cbClientes";
+            this.cbClientes.Size = new System.Drawing.Size(135, 21);
+            this.cbClientes.TabIndex = 19;
+            this.cbClientes.SelectedIndexChanged += new System.EventHandler(this.cbClientes_SelectedIndexChanged);
+            // 
+            // cbClases
+            // 
+            this.cbClases.FormattingEnabled = true;
+            this.cbClases.Location = new System.Drawing.Point(16, 380);
+            this.cbClases.Name = "cbClases";
+            this.cbClases.Size = new System.Drawing.Size(135, 21);
+            this.cbClases.TabIndex = 20;
+            this.cbClases.SelectedIndexChanged += new System.EventHandler(this.cbClases_SelectedIndexChanged);
+            // 
+            // cbDetalleVenta
+            // 
+            this.cbDetalleVenta.FormattingEnabled = true;
+            this.cbDetalleVenta.Location = new System.Drawing.Point(16, 417);
+            this.cbDetalleVenta.Name = "cbDetalleVenta";
+            this.cbDetalleVenta.Size = new System.Drawing.Size(135, 21);
+            this.cbDetalleVenta.TabIndex = 21;
+            this.cbDetalleVenta.SelectedIndexChanged += new System.EventHandler(this.cbDetalleVenta_SelectedIndexChanged);
+            // 
             // Formulario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.cbDetalleVenta);
+            this.Controls.Add(this.cbClases);
+            this.Controls.Add(this.cbClientes);
+            this.Controls.Add(this.cbEmpleados);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cbHorarios);
             this.Controls.Add(this.button_Cancelar);
             this.Controls.Add(this.button_Aceptar);
             this.Controls.Add(this.textBox7);
@@ -250,7 +294,11 @@
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.Button button_Aceptar;
         private System.Windows.Forms.Button button_Cancelar;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbHorarios;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ComboBox cbEmpleados;
+        private System.Windows.Forms.ComboBox cbClientes;
+        private System.Windows.Forms.ComboBox cbClases;
+        private System.Windows.Forms.ComboBox cbDetalleVenta;
     }
 }
