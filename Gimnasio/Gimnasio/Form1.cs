@@ -55,71 +55,115 @@ namespace Gimnasio
 
         private void btn_Insertar_Click(object sender, EventArgs e)
         {
-            // Se crea una lista de strings para el metodo inserta
-            List<string> lista = new List<string>();
-            // Se crea el formulario para insertar un nuevo registro en la Tabla que esté seleccionada
-            Formulario form_agregar = new Formulario(tabControl_Tablas.SelectedTab.Text);
-            form_agregar.Text = "Insertar " + tabControl_Tablas.SelectedTab.Text;
-            form_agregar.ShowDialog();
-
-            if (form_agregar.band_aceptar) // Si ya se hizo click en aceptar en el formulario
+            //Checa si se encuentra en la pestaña ¨DetalleVenta¨ o ¨DetalleCompra¨
+            if (tabControl_Tablas.SelectedTab.Text == "DetalleVenta" || tabControl_Tablas.SelectedTab.Text == "DetalleCompra")
             {
-                actualiza_lista_de_datos_insertar(lista, form_agregar);
+                //Pide confirmacion para insertar
+                if (MessageBox.Show("Despues de insertar, este registro no se podra modificar o eliminar \n\nDesea continuar?", "Advertencia", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    // Se crea una lista de strings para el metodo inserta
+                    List<string> lista = new List<string>();
+                    // Se crea el formulario para insertar un nuevo registro en la Tabla que esté seleccionada
+                    Formulario form_agregar = new Formulario(tabControl_Tablas.SelectedTab.Text);
+                    form_agregar.Text = "Insertar " + tabControl_Tablas.SelectedTab.Text;
+                    form_agregar.ShowDialog();
 
-                inserta_en_DB(lista);
-                actualiza_grid(tabControl_Tablas.SelectedTab.Text); // Actualiza
+                    if (form_agregar.band_aceptar) // Si ya se hizo click en aceptar en el formulario
+                    {
+                        actualiza_lista_de_datos_insertar(lista, form_agregar);
 
-                // Limpia y cierra el formulario
-                form_agregar.Dispose();
+                        inserta_en_DB(lista);
+                        actualiza_grid(tabControl_Tablas.SelectedTab.Text); // Actualiza
+
+                        // Limpia y cierra el formulario
+                        form_agregar.Dispose();
+
+                    }
+                }
+            }
+            else
+            {
+                // Se crea una lista de strings para el metodo inserta
+                List<string> lista = new List<string>();
+                // Se crea el formulario para insertar un nuevo registro en la Tabla que esté seleccionada
+                Formulario form_agregar = new Formulario(tabControl_Tablas.SelectedTab.Text);
+                form_agregar.Text = "Insertar " + tabControl_Tablas.SelectedTab.Text;
+                form_agregar.ShowDialog();
+
+                if (form_agregar.band_aceptar) // Si ya se hizo click en aceptar en el formulario
+                {
+                    actualiza_lista_de_datos_insertar(lista, form_agregar);
+
+                    inserta_en_DB(lista);
+                    actualiza_grid(tabControl_Tablas.SelectedTab.Text); // Actualiza
+
+                    // Limpia y cierra el formulario
+                    form_agregar.Dispose();
+                }
+
             }
         }
 
         private void btn_Modificar_Click(object sender, EventArgs e)
         {
-            // Se crea una lista de strings para el metodo inserta
-            List<string> lista = new List<string>();
-            // Se crea el formulario para modificar una tupla
-            Formulario form_modificar;
-
-            // Primero checa que la fila entera esté seleccionada (en este caso selectedcells debe de ser 4 contando el id)
-            if (dataGridView.SelectedRows.Count > 0)
+            if (tabControl_Tablas.SelectedTab.Text != "DetalleVenta" && tabControl_Tablas.SelectedTab.Text != "DetalleCompra")
             {
-                form_modificar = new Formulario(tabControl_Tablas.SelectedTab.Text);
-                form_modificar.Text = "Modificar " + tabControl_Tablas.SelectedTab.Text;
+                // Se crea una lista de strings para el metodo inserta
+                List<string> lista = new List<string>();
+                // Se crea el formulario para modificar una tupla
+                Formulario form_modificar;
 
-                actualiza_formulario_antes_de_modificar(form_modificar);
-
-                form_modificar.ShowDialog();
-
-                if (form_modificar.band_aceptar) // Si ya se hizo click en aceptar en el formulario
+                // Primero checa que la fila entera esté seleccionada (en este caso selectedcells debe de ser 4 contando el id)
+                if (dataGridView.SelectedRows.Count > 0)
                 {
-                    actualiza_lista_de_datos_modificar(lista, form_modificar);
+                    form_modificar = new Formulario(tabControl_Tablas.SelectedTab.Text);
+                    form_modificar.Text = "Modificar " + tabControl_Tablas.SelectedTab.Text;
 
-                    modifica_en_DB(lista);
-                    actualiza_grid(tabControl_Tablas.SelectedTab.Text); // Actualiza
+                    actualiza_formulario_antes_de_modificar(form_modificar);
 
-                    // Limpia y cierra el formulario
-                    form_modificar.Dispose();
+                    form_modificar.ShowDialog();
+
+                    if (form_modificar.band_aceptar) // Si ya se hizo click en aceptar en el formulario
+                    {
+                        actualiza_lista_de_datos_modificar(lista, form_modificar);
+
+                        modifica_en_DB(lista);
+                        actualiza_grid(tabControl_Tablas.SelectedTab.Text); // Actualiza
+
+                        // Limpia y cierra el formulario
+                        form_modificar.Dispose();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("ERROR - Toda la fila debe de estar seleccionada.");
                 }
             }
             else
             {
-                MessageBox.Show("ERROR - Toda la fila debe de estar seleccionada.");
+                MessageBox.Show("NOTIFICACION - Los datos no se pueden modificar");
             }
         }
 
         private void btn_Eliminar_Click(object sender, EventArgs e)
         {
-            // Primero checa que la fila entera esté seleccionada (en este caso selectedcells debe de ser 4 contando el id)
-            if (dataGridView.SelectedRows.Count > 0)
+            if (tabControl_Tablas.SelectedTab.Text != "DetalleVenta" && tabControl_Tablas.SelectedTab.Text != "DetalleCompra")
             {
-                // Pide la confirmacion para eliminar al profesor
-                if (MessageBox.Show("Se va a eliminar " + dataGridView.SelectedCells[1].Value.ToString(),
-                                    "Eliminar", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                // Primero checa que la fila entera esté seleccionada (en este caso selectedcells debe de ser 4 contando el id)
+                if (dataGridView.SelectedRows.Count > 0)
                 {
-                    elimina_en_DB(tabControl_Tablas.SelectedTab.Text);
-                    actualiza_grid(tabControl_Tablas.SelectedTab.Text);
+                    // Pide la confirmacion para eliminar al profesor
+                    if (MessageBox.Show("Se va a eliminar " + dataGridView.SelectedCells[1].Value.ToString(),
+                                        "Eliminar", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                    {
+                        elimina_en_DB(tabControl_Tablas.SelectedTab.Text);
+                        actualiza_grid(tabControl_Tablas.SelectedTab.Text);
+                    }
                 }
+            }
+            else
+            {
+                MessageBox.Show("NOTIFICACION - Los datos no se pueden eliminar");
             }
         }
 
