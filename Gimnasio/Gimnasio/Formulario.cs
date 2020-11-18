@@ -25,6 +25,7 @@ namespace Gimnasio
         public List<string> listaClases = new List<string>();
         public List<string> listaDetVenta = new List<string>();
         public List<string> listaDetCompra = new List<string>();
+        public List<string> listaSuscripcion = new List<string>();
 
         public Formulario(string tbl)
         {
@@ -281,36 +282,46 @@ namespace Gimnasio
                     break;
 
                 case "Pago":
+                    tablaActual = tabla;
+                    llenaComboSuscripcion();
+                    llenaComboClientes();
+                    if (textBox1.Text != string.Empty && textBox2.Text != string.Empty) //Si es modificación selecciona el item adecuado del combobox.
+
+                    {
+                        SeleccionaSuscripcionModif();
+                        SeleccionaClienteoModif();
+
+                    }
                     label1.Text = "Suscripción";
                     label1.Location = new Point(10, 10);
                     label1.Show();
-                    textBox1.Location = new Point(10, 30);
+                    cbSuscripcion.Location = new Point(10, 30);
                     textBox1.Show();
 
                     label2.Text = "Cliente";
-                    label2.Location = new Point(130, 10);
+                    label2.Location = new Point(150, 10);
                     label2.Show();
-                    textBox2.Location = new Point(130, 30);
+                    cbClientes.Location = new Point(150, 30);
                     textBox2.Show();
 
                     label3.Text = "Total ($)";
-                    label3.Location = new Point(250, 10);
+                    label3.Location = new Point(290, 10);
                     label3.Show();
-                    textBox3.Location = new Point(250, 30);
+                    textBox3.Location = new Point(290, 30);
                     textBox3.Show();
 
                     label4.Text = "Fecha (Año-Mes-Día)";
-                    label4.Location = new Point(370, 10);
+                    label4.Location = new Point(400, 10);
                     label4.Show();
-                    textBox4.Location = new Point(370, 30);
+                    textBox4.Location = new Point(400, 30);
                     textBox4.Show();
 
                     // Posiciona los botones en las orillas de la ventana, a la izquierda aceptar y a la derecha cancelar
                     button_Aceptar.Location = new Point(10, 50 + 10);
-                    button_Cancelar.Location = new Point(370 + 20, 50 + 10);
+                    button_Cancelar.Location = new Point(380 + 20, 50 + 10);
 
                     // Redimensiona toda la ventana
-                    this.Width = 500;
+                    this.Width = 550;
                     this.Height = 130;
 
                     break;
@@ -578,6 +589,10 @@ namespace Gimnasio
                         if (textBox2.Text == Id)
                             cbClientes.SelectedIndex = listaClientes.IndexOf(cad);
                         break;
+                    case "Pago":
+                        if (textBox2.Text == Id)
+                            cbClientes.SelectedIndex = listaClientes.IndexOf(cad);
+                        break;
                 }
 
             }
@@ -635,6 +650,23 @@ namespace Gimnasio
                         if (textBox2.Text == Id)
                             cbDetalleCompra.SelectedIndex = listaDetCompra.IndexOf(cad);
                         break;
+                }
+
+            }
+        }
+
+        private void SeleccionaSuscripcionModif()
+        {
+            foreach (string cad in listaSuscripcion)
+            {
+                string Id = cad.Substring(0, 1);
+                switch (tablaActual)
+                {
+                    case "Pago":
+                        if (textBox1.Text == Id)
+                            cbSuscripcion.SelectedIndex = listaSuscripcion.IndexOf(cad);
+                        break;
+                 
                 }
 
             }
@@ -870,7 +902,7 @@ namespace Gimnasio
             SqlConnection connection = Conexion.Conectar();
 
             // Se crea la consulta para obtener la tabla de profesor
-            string query = "SELECT IdEmpleado, Nombre FROM gimnasio.Empleado ORDER BY Nombre ASC";
+            string query = "SELECT IdEmpleado, Nombre FROM gimnasio.Empleado ORDER BY IdEmpleado ASC";
 
             // Se crea el comando y se ejecuta
             SqlCommand command = new SqlCommand(query, connection);
@@ -900,7 +932,7 @@ namespace Gimnasio
             SqlConnection connection = Conexion.Conectar();
 
             // Se crea la consulta para obtener la tabla de profesor
-            string query = "SELECT IdCliente, Nombre FROM gimnasio.Cliente ORDER BY Nombre ASC";
+            string query = "SELECT IdCliente, Nombre FROM gimnasio.Cliente ORDER BY IdCliente ASC";
 
             // Se crea el comando y se ejecuta
             SqlCommand command = new SqlCommand(query, connection);
@@ -1010,6 +1042,34 @@ namespace Gimnasio
             }
 
         }
+
+        private void llenaComboSuscripcion()
+        {
+
+            // Se abre la conexion con la base de datos
+            SqlConnection connection = Conexion.Conectar();
+
+            // Se crea la consulta para obtener la tabla de profesor
+            string query = "SELECT IdSuscripcion FROM gimnasio.Suscripcion";
+
+            // Se crea el comando y se ejecuta
+            SqlCommand command = new SqlCommand(query, connection);
+
+            // Se obtiene la informacion de la tabla a partir del comando
+            SqlDataAdapter data = new SqlDataAdapter(command);
+            DataTable dataTable = new DataTable();
+            data.Fill(dataTable);
+            dataGridView1.DataSource = dataTable;
+
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                string suscripcion = dataGridView1.Rows[i].Cells[0].Value.ToString();
+                cbSuscripcion.Items.Add(suscripcion);
+                listaSuscripcion.Add(suscripcion);
+            }
+
+        }
+
 
         // Gets de todos los textbox 
         // Esto es para poder acceder a los textbox desde el form1 sin tener que asignar los textos a variables globales
@@ -1128,6 +1188,9 @@ namespace Gimnasio
                 case "Inscripcion":
                     Textbox2.Text = IdHorario.Substring(0, 1);
                     break;
+                case "Pago":
+                    Textbox2.Text = IdHorario.Substring(0, 1);
+                    break;
             }
         }
 
@@ -1160,6 +1223,17 @@ namespace Gimnasio
             {
                 case "Compra":
                     Textbox2.Text = IdHorario.Substring(0, 1);
+                    break;
+            }
+        }
+
+        private void cbSuscripcion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string IdHorario = cbSuscripcion.SelectedItem.ToString();
+            switch (tablaActual)
+            {
+                case "Pago":
+                    Textbox1.Text = IdHorario.Trim();
                     break;
             }
         }

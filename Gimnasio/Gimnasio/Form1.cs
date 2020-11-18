@@ -153,7 +153,7 @@ namespace Gimnasio
                 if (dataGridView.SelectedRows.Count > 0)
                 {
                     // Pide la confirmacion para eliminar al profesor
-                    if (MessageBox.Show("Se va a eliminar " + dataGridView.SelectedCells[1].Value.ToString(),
+                    if (MessageBox.Show("Se va a eliminar " + dataGridView.SelectedCells[0].Value.ToString(),
                                         "Eliminar", MessageBoxButtons.OKCancel) == DialogResult.OK)
                     {
                         elimina_en_DB(tabControl_Tablas.SelectedTab.Text);
@@ -209,7 +209,7 @@ namespace Gimnasio
             SqlConnection conexion = Conexion.Conectar();
             // Se crea la consulta en un string
             string valores = get_valores_tabla_eliminar(tabla);
-            string consulta = "DELETE gimnasio." + tabla + " " + valores;
+            string consulta = "DELETE from gimnasio." + tabla + " " + valores;
 
             // Se crea el comando con la conexion a la base de datos y la consulta
             SqlCommand comando = new SqlCommand(consulta, conexion);
@@ -356,7 +356,7 @@ namespace Gimnasio
                     v = "WHERE IdInscripcion = @IdInscripcion";
                     break;
                 case "Venta":
-                    v = "WHERE Identa = @IdVenta";
+                    v = "WHERE IdVenta = @IdVenta";
                     break;
                 case "Compra":
                     v = "WHERE IdCompra = @IdCompra";
@@ -473,7 +473,20 @@ namespace Gimnasio
                     formulario.Textbox1.Text = dataGridView.SelectedCells[1].Value.ToString();
                     formulario.Textbox2.Text = dataGridView.SelectedCells[2].Value.ToString();
                     formulario.Textbox3.Text = dataGridView.SelectedCells[3].Value.ToString();
-                    formulario.Textbox4.Text = dataGridView.SelectedCells[4].Value.ToString();
+                   // formulario.Textbox4.Text = dataGridView.SelectedCells[4].Value.ToString();
+
+                    #region Quita el formato de fecha y lo convierte a cadena
+                    string fecha4 = "";
+                    string fechaAux4 = dataGridView.SelectedCells[4].Value.ToString();
+                    fecha4 = fechaAux4.Substring(0, 10);
+                    fechaAux4 = fecha4.Replace("/", "");
+
+                    fecha4 = fechaAux4.Substring(4);
+                    fecha4 += fechaAux4.Substring(2, 2);
+                    fecha4 += fechaAux4.Substring(0, 2);
+                    formulario.Textbox4.Text = fecha4;
+
+                    #endregion
                     break;
                 case "DetalleVenta":
                     formulario.Textbox1.Text = dataGridView.SelectedCells[1].Value.ToString();

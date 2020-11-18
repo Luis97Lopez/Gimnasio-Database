@@ -51,6 +51,7 @@
             this.cbClases = new System.Windows.Forms.ComboBox();
             this.cbDetalleVenta = new System.Windows.Forms.ComboBox();
             this.cbDetalleCompra = new System.Windows.Forms.ComboBox();
+            this.cbSuscripcion = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -250,11 +251,21 @@
             this.cbDetalleCompra.TabIndex = 22;
             this.cbDetalleCompra.SelectedIndexChanged += new System.EventHandler(this.cbDetalleCompra_SelectedIndexChanged);
             // 
+            // cbSuscripcion
+            // 
+            this.cbSuscripcion.FormattingEnabled = true;
+            this.cbSuscripcion.Location = new System.Drawing.Point(174, 298);
+            this.cbSuscripcion.Name = "cbSuscripcion";
+            this.cbSuscripcion.Size = new System.Drawing.Size(135, 21);
+            this.cbSuscripcion.TabIndex = 23;
+            this.cbSuscripcion.SelectedIndexChanged += new System.EventHandler(this.cbSuscripcion_SelectedIndexChanged);
+            // 
             // Formulario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.cbSuscripcion);
             this.Controls.Add(this.cbDetalleCompra);
             this.Controls.Add(this.cbDetalleVenta);
             this.Controls.Add(this.cbClases);
@@ -313,5 +324,6 @@
         private System.Windows.Forms.ComboBox cbClases;
         private System.Windows.Forms.ComboBox cbDetalleVenta;
         private System.Windows.Forms.ComboBox cbDetalleCompra;
+        private System.Windows.Forms.ComboBox cbSuscripcion;
     }
 }
