@@ -851,7 +851,9 @@ namespace Gimnasio
             switch (tabla)
             {
                 case "Inscripcion":
-                    query = "SELECT IdInscripcion, IdCliente, Nombre AS NombreCliente FROM gimnasio.Inscripcion INNER JOIN ";
+                    query = "SELECT IdInscripcion, IdCliente, Nombre AS NombreCliente " +
+                        "FROM gimnasio.Inscripcion INNER JOIN gimnasio.Cliente " +
+                        "ON gimnasio.Inscripcion.IdCliente = gimnasio.Cliente.IdCliente";
                     break;
             }
 
