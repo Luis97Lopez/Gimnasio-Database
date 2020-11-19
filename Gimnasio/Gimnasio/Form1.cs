@@ -39,7 +39,8 @@ namespace Gimnasio
             SqlConnection connection = Conexion.Conectar();
 
             // Se crea la consulta para obtener la tabla de profesor
-            string query = "SELECT * FROM gimnasio." + tabla + ";";
+            //string query = "SELECT * FROM gimnasio." + tabla + ";";
+            string query = get_query_actualiza_grid(tabla);
 
             // Se crea el comando y se ejecuta
             SqlCommand command = new SqlCommand(query, connection);
@@ -842,6 +843,19 @@ namespace Gimnasio
                     comando.Parameters.AddWithValue("@IdCompra", dataGridView.SelectedCells[0].Value.ToString());
                     break;
             }
+        }
+
+        string get_query_actualiza_grid(string tabla)
+        {
+            string query = "SELECT * FROM gimnasio." + tabla + ";";
+            switch (tabla)
+            {
+                case "Inscripcion":
+                    query = "SELECT IdInscripcion, IdCliente, NombreCliente FROM gimnasio.Inscripcion";
+                    break;
+            }
+
+            return query;
         }
     }
 }
