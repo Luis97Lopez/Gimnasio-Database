@@ -78,7 +78,6 @@ namespace Gimnasio
 
                         // Limpia y cierra el formulario
                         form_agregar.Dispose();
-
                     }
                 }
             }
@@ -851,10 +850,13 @@ namespace Gimnasio
             switch (tabla)
             {
                 case "Inscripcion":
-                    query = "SELECT i.IdInscripcion, i.IdCliente, c.Nombre AS NombreCliente, e.IdClase, e.Nombre AS NombreClaase " +
-                        "FROM gimnasio.Inscripcion i INNER JOIN gimnasio.Cliente c " +
-                        "ON i.IdCliente = c.IdCliente " +
-                        "INNER JOIN gimnasio.Clase e ON i.IdClase = e.IdClase";
+                    query = "SELECT i.IdInscripcion, (CAST(i.IdCliente AS VARCHAR(100)) + ' ' + c.Nombre) AS Cliente, (CAST(e.IdClase AS VARCHAR(100)) + ' ' + e.Nombre) AS Clase " +
+                            "FROM gimnasio.Inscripcion i " +
+                            "INNER JOIN gimnasio.Cliente c " +
+                            "ON i.IdCliente = c.IdCliente " +
+                            "INNER JOIN gimnasio.Clase e " +
+                            "ON i.IdClase = e.IdClase";
+                    
                     break;
             }
 
