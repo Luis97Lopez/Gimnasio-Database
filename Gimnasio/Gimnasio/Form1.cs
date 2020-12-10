@@ -526,8 +526,8 @@ namespace Gimnasio
                     formulario.Textbox7.Text = dataGridView.SelectedCells[7].Value.ToString();
                     break;
                 case "Inscripcion":
-                    formulario.Textbox1.Text = dataGridView.SelectedCells[1].Value.ToString();
-                    formulario.Textbox2.Text = dataGridView.SelectedCells[2].Value.ToString();
+                    formulario.Textbox1.Text = dataGridView.SelectedCells[2].Value.ToString();
+                    formulario.Textbox2.Text = dataGridView.SelectedCells[1].Value.ToString();
                     break;
                 case "Venta":
                     formulario.Textbox1.Text = dataGridView.SelectedCells[1].Value.ToString();
@@ -850,12 +850,16 @@ namespace Gimnasio
             switch (tabla)
             {
                 case "Inscripcion":
-                    query = "SELECT i.IdInscripcion, (CAST(i.IdCliente AS VARCHAR(100)) + ' ' + c.Nombre) AS Cliente, (CAST(e.IdClase AS VARCHAR(100)) + ' ' + e.Nombre) AS Clase " +
+                    query = "SELECT i.IdInscripcion, (CAST(i.IdCliente AS VARCHAR(100)) " + "+ ' ' + c.Nombre) AS Cliente, " +
+                        "(CAST(e.IdClase AS VARCHAR(100)) +  " +
+                        "+ ' ' + e.Nombre + ' ' + CAST(h.HoraInicio AS VARCHAR(100))) AS Clase " +
                             "FROM gimnasio.Inscripcion i " +
                             "INNER JOIN gimnasio.Cliente c " +
                             "ON i.IdCliente = c.IdCliente " +
                             "INNER JOIN gimnasio.Clase e " +
-                            "ON i.IdClase = e.IdClase";
+                            "ON i.IdClase = e.IdClase " +
+                            "INNER JOIN gimnasio.Horario h " +
+                            "ON h.IdHorario = e.IdHorario";
                     
                     break;
             }

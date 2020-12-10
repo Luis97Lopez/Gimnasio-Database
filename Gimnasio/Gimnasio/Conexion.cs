@@ -9,18 +9,18 @@ namespace Gimnasio
 {
     class Conexion
     { 
-        
+        /*
            //Conexion de Mauricio:
         private const string ConnectionString = "SERVER=MR-ICIO\\SQLEXPRESS;" +
                                      "DATABASE=Gimnasio;" +
                                      "integrated security=true;";
-        
-         /*  
-           Conexion de Luis:
-        private const string ConnectionString = "SERVER=DESKTOP-GP08O95\\SQLEXPRESS;" +
+        */
+           
+           //Conexion de Luis:
+        private const string ConnectionString = "SERVER=DESKTOP-LMMN5QO\\SQLEXPRESS;" +
                                     "DATABASE=Gimnasio;" +
                                     "integrated security=true;";
-
+         /*
             Conexion de Alfredo:
         private const string ConnectionString = "SERVER=DESKTOP-DVAR0RA\\SQLEXPRESS;" +
                                                 "DATABASE=Gimnasio;" +

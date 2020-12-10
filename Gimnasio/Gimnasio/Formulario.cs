@@ -247,6 +247,7 @@ namespace Gimnasio
                     break;
 
                 case "Inscripcion":
+                    
                     tablaActual = tabla;
                     llenaComboClientes();
                     llenaComboClases();
@@ -254,6 +255,7 @@ namespace Gimnasio
                     if (textBox1.Text != string.Empty && textBox2.Text != string.Empty) //Si es modificación selecciona el item adecuado del combobox.
 
                     {
+                        
                         SeleccionaClasesModif();
                         SeleccionaClienteoModif();
                     }
@@ -586,7 +588,7 @@ namespace Gimnasio
                             cbClientes.SelectedIndex = listaClientes.IndexOf(cad);
                         break;
                     case "Inscripcion":
-                        if (textBox2.Text == Id)
+                        if (textBox2.Text.Split(' ')[0] == Id)
                             cbClientes.SelectedIndex = listaClientes.IndexOf(cad);
                         break;
                     case "Pago":
@@ -609,7 +611,7 @@ namespace Gimnasio
                 switch (tablaActual)
                 {
                     case "Inscripcion":
-                        if (textBox1.Text == Id)
+                        if (textBox1.Text.Split(' ')[0] == Id)
                             cbClases.SelectedIndex = listaClases.IndexOf(cad);
                         break;
                 }
@@ -945,7 +947,7 @@ namespace Gimnasio
 
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
-                string cliente = dataGridView1.Rows[i].Cells[0].Value.ToString() + " - " + dataGridView1.Rows[i].Cells[1].Value.ToString();
+                string cliente = dataGridView1.Rows[i].Cells[0].Value.ToString() + " " + dataGridView1.Rows[i].Cells[1].Value.ToString();
                 cbClientes.Items.Add(cliente);
                 listaClientes.Add(cliente);
             }
@@ -962,7 +964,8 @@ namespace Gimnasio
             SqlConnection connection = Conexion.Conectar();
 
             // Se crea la consulta para obtener la tabla de profesor
-            string query = "SELECT IdClase, Nombre FROM gimnasio.Clase";
+            string query = "SELECT IdClase, Nombre, h.HoraInicio FROM gimnasio.Clase c " +
+                "INNER JOIN gimnasio.Horario h ON c.IdHorario = h.IdHorario";
 
             // Se crea el comando y se ejecuta
             SqlCommand command = new SqlCommand(query, connection);
@@ -975,7 +978,8 @@ namespace Gimnasio
 
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
-                string clase = dataGridView1.Rows[i].Cells[0].Value.ToString() + " - " + dataGridView1.Rows[i].Cells[1].Value.ToString();
+                string clase = dataGridView1.Rows[i].Cells[0].Value.ToString() + " " + 
+                    dataGridView1.Rows[i].Cells[1].Value.ToString() + " "  + dataGridView1.Rows[i].Cells[2].Value.ToString();
                 cbClases.Items.Add(clase);
                 listaClases.Add(clase);
             }
