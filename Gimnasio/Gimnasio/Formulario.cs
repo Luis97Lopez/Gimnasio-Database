@@ -23,9 +23,10 @@ namespace Gimnasio
         public List<string> listaEmpleados = new List<string>();
         public List<string> listaClientes = new List<string>();
         public List<string> listaClases = new List<string>();
-        public List<string> listaDetVenta = new List<string>();
-        public List<string> listaDetCompra = new List<string>();
+        public List<string> listaVenta = new List<string>();
+        public List<string> listaCompra = new List<string>();
         public List<string> listaSuscripcion = new List<string>();
+        public List<string> listaArticulo = new List<string>();
 
         public Formulario(string tbl)
         {
@@ -383,11 +384,11 @@ namespace Gimnasio
                 case "Venta":
                     tablaActual = tabla;
                     llenaComboEmpleados();
-                    llenaComboDetallesVenta();
+                    //llenaComboDetallesVenta();
                     if (textBox1.Text != string.Empty && textBox2.Text != string.Empty) //Si es modificación selecciona el item adecuado del combobox.
                     {
                         SeleccionaEmpleadoModif();
-                        SeleccionaDetVentaModif();
+                        //SeleccionaDetVentaModif();
                     }
 
                     label1.Text = "Empleado";
@@ -396,17 +397,11 @@ namespace Gimnasio
                     cbEmpleados.Location = new Point(10, 30);
                     textBox1.Show();
 
-                    label2.Text = "DetalleVenta";
-                    label2.Location = new Point(150, 10);
-                    label2.Show();
-                    cbDetalleVenta.Location = new Point(150, 30);
-                    textBox2.Show();
-
                     label3.Text = "Fecha (Año-Mes-Día)";
-                    label3.Location = new Point(290, 10);
+                    label3.Location = new Point(150, 10);
                     label3.Show();
-                    textBox3.Location = new Point(290, 30);
-                    textBox3.Show();
+                    textBox2.Location = new Point(150, 30);
+                    textBox2.Show();
 
                     // Posiciona los botones en las orillas de la ventana, a la izquierda aceptar y a la derecha cancelar
                     button_Aceptar.Location = new Point(10, 50 + 10);
@@ -419,17 +414,33 @@ namespace Gimnasio
                     break;
 
                 case "DetalleVenta":
-                    label1.Text = "Articulo";
+                    tablaActual = tabla;
+                    llenaComboVenta();
+                    llenaComboArticulo();
+                    if (textBox1.Text != string.Empty && textBox2.Text != string.Empty && textBox3.Text != string.Empty) //Si es modificación selecciona el item adecuado del combobox.
+                    {
+                        SeleccionaVentaModif();
+                        SeleccionaArticuloModif();
+                    }
+
+                    label1.Text = "Venta";
                     label1.Location = new Point(10, 10);
                     label1.Show();
+                    cbVenta.Location = new Point(10, 30);
                     textBox1.Location = new Point(10, 30);
                     textBox1.Show();
 
-                    label2.Text = "Cantidad";
-                    label2.Location = new Point(130, 10);
+                    label2.Text = "Articulo";
+                    label2.Location = new Point(150, 10);
                     label2.Show();
-                    textBox2.Location = new Point(130, 30);
+                    cbArticulo.Location = new Point(150, 30);
                     textBox2.Show();
+
+                    label3.Text = "Cantidad";
+                    label3.Location = new Point(300, 10);
+                    label3.Show();
+                    textBox3.Location = new Point(300, 30);
+                    textBox3.Show();
 
                     /*label3.Text = "Total ($)";
                     label3.Location = new Point(250, 10);
@@ -442,7 +453,7 @@ namespace Gimnasio
                     button_Cancelar.Location = new Point(250 + 20, 50 + 10);
 
                     // Redimensiona toda la ventana
-                    this.Width = 380;
+                    this.Width = 450;
                     this.Height = 130;
 
                     break;
@@ -450,13 +461,12 @@ namespace Gimnasio
                 case "Compra":
                     tablaActual = tabla;
                     llenaComboEmpleados();
-                    llenaComboDetallesCompra();
+                    //llenaComboDetallesVenta();
                     if (textBox1.Text != string.Empty && textBox2.Text != string.Empty) //Si es modificación selecciona el item adecuado del combobox.
                     {
                         SeleccionaEmpleadoModif();
-                        SeleccionaDetCompraModif();
+                        //SeleccionaDetVentaModif();
                     }
-
 
                     label1.Text = "Empleado";
                     label1.Location = new Point(10, 10);
@@ -464,17 +474,11 @@ namespace Gimnasio
                     cbEmpleados.Location = new Point(10, 30);
                     textBox1.Show();
 
-                    label2.Text = "DetalleCompra";
-                    label2.Location = new Point(155, 10);
-                    label2.Show();
-                    cbDetalleCompra.Location = new Point(155, 30);
-                    textBox2.Show();
-
                     label3.Text = "Fecha (Año-Mes-Día)";
-                    label3.Location = new Point(300, 10);
+                    label3.Location = new Point(150, 10);
                     label3.Show();
-                    textBox3.Location = new Point(300, 30);
-                    textBox3.Show();
+                    textBox2.Location = new Point(150, 30);
+                    textBox2.Show();
 
                     // Posiciona los botones en las orillas de la ventana, a la izquierda aceptar y a la derecha cancelar
                     button_Aceptar.Location = new Point(10, 50 + 10);
@@ -487,30 +491,41 @@ namespace Gimnasio
                     break;
 
                 case "DetalleCompra":
-                    label1.Text = "Articulo";
+
+                    tablaActual = tabla;
+                    llenaComboCompra();
+                    llenaComboArticulo();
+                    if (textBox1.Text != string.Empty && textBox2.Text != string.Empty && textBox3.Text != string.Empty) //Si es modificación selecciona el item adecuado del combobox.
+                    {
+                        SeleccionaCompraModif();
+                        SeleccionaArticuloModif();
+                    }
+
+                    label1.Text = "Compra";
                     label1.Location = new Point(10, 10);
                     label1.Show();
+                    cbCompra.Location = new Point(10, 30);
                     textBox1.Location = new Point(10, 30);
                     textBox1.Show();
 
-                    label2.Text = "Cantidad";
-                    label2.Location = new Point(130, 10);
+                    label2.Text = "Articulo";
+                    label2.Location = new Point(150, 10);
                     label2.Show();
-                    textBox2.Location = new Point(130, 30);
+                    cbArticulo.Location = new Point(150, 30);
                     textBox2.Show();
 
-                    /*label3.Text = "Total ($)";
-                    label3.Location = new Point(250, 10);
+                    label3.Text = "Cantidad";
+                    label3.Location = new Point(300, 10);
                     label3.Show();
-                    textBox3.Location = new Point(250, 30);
-                    textBox3.Show();*/
+                    textBox3.Location = new Point(300, 30);
+                    textBox3.Show();
 
                     // Posiciona los botones en las orillas de la ventana, a la izquierda aceptar y a la derecha cancelar
                     button_Aceptar.Location = new Point(10, 50 + 10);
                     button_Cancelar.Location = new Point(250 + 20, 50 + 10);
 
                     // Redimensiona toda la ventana
-                    this.Width = 380;
+                    this.Width = 430;
                     this.Height = 130;
 
                     break;
@@ -561,13 +576,14 @@ namespace Gimnasio
                             cbEmpleados.SelectedIndex = listaEmpleados.IndexOf(cad);
                         break;
                     case "Venta":
-                        if (textBox1.Text == Id)
+                        if (textBox1.Text.Split(' ')[0] == Id)
                             cbEmpleados.SelectedIndex = listaEmpleados.IndexOf(cad);
                         break;
                     case "Compra":
-                        if (textBox1.Text == Id)
+                        if (textBox1.Text.Split(' ')[0] == Id)
                             cbEmpleados.SelectedIndex = listaEmpleados.IndexOf(cad);
                         break;
+                        
                 }
 
             }
@@ -622,16 +638,17 @@ namespace Gimnasio
         /// <summary>
         /// Método que selecciona el detalle de venta a modificar en el combobox de detalle de venta.
         /// </summary>
-        private void SeleccionaDetVentaModif()
+        private void SeleccionaVentaModif()
         {
-            foreach (string cad in listaDetVenta)
+            foreach (string cad in listaVenta)
             {
-                string Id = cad.Substring(0, 1);
+                //string Id = cad.Substring(0, 1);
+                string Id = cad.Split(' ')[0];
                 switch (tablaActual)
                 {
-                    case "Venta":
+                    case "DetalleVenta":
                         if (textBox2.Text == Id)
-                            cbDetalleVenta.SelectedIndex = listaDetVenta.IndexOf(cad);
+                            cbVenta.SelectedIndex = listaVenta.IndexOf(cad);
                         break;
                 }
 
@@ -641,16 +658,17 @@ namespace Gimnasio
         /// <summary>
         /// Método que selecciona el detalle de compra a modificar en el combobox de detalle de compra.
         /// </summary>
-        private void SeleccionaDetCompraModif()
+        private void SeleccionaCompraModif()
         {
-            foreach (string cad in listaDetCompra)
+            foreach (string cad in listaCompra)
             {
-                string Id = cad.Substring(0, 1);
+                //string Id = cad.Substring(0, 1);
+                string Id = cad.Split(' ')[0];
                 switch (tablaActual)
                 {
-                    case "Compra":
+                    case "DetalleCompra":
                         if (textBox2.Text == Id)
-                            cbDetalleCompra.SelectedIndex = listaDetCompra.IndexOf(cad);
+                            cbCompra.SelectedIndex = listaCompra.IndexOf(cad);
                         break;
                 }
 
@@ -661,7 +679,8 @@ namespace Gimnasio
         {
             foreach (string cad in listaSuscripcion)
             {
-                string Id = cad.Substring(0, 1);
+                //string Id = cad.Substring(0, 1);
+                string Id = cad.Split(' ')[0];
                 switch (tablaActual)
                 {
                     case "Pago":
@@ -669,6 +688,28 @@ namespace Gimnasio
                             cbSuscripcion.SelectedIndex = listaSuscripcion.IndexOf(cad);
                         break;
                  
+                }
+
+            }
+        }
+
+        private void SeleccionaArticuloModif()
+        {
+            foreach (string cad in listaArticulo)
+            {
+                //string Id = cad.Substring(0, 1);
+                string Id = cad.Split(' ')[0];
+                switch (tablaActual)
+                {
+                    case "DetalleVenta":
+                        if (textBox1.Text == Id)
+                            cbArticulo.SelectedIndex = listaArticulo.IndexOf(cad);
+                        break;
+                    case "DetalleCompra":
+                        if (textBox1.Text == Id)
+                            cbArticulo.SelectedIndex = listaArticulo.IndexOf(cad);
+                        break;
+
                 }
 
             }
@@ -767,7 +808,7 @@ namespace Gimnasio
                     break;
                 case "DetalleVenta":
                     // Checa que los controles no estén vacios ni que las cadenas sobrepasen la longitud correspondiente
-                    if (textBox1.Text != "" && textBox2.Text != "")
+                    if (textBox1.Text != "" && textBox2.Text != "" && textBox3.Text != "")
                     {
                         band_aceptar = true;
                         this.Close();
@@ -779,7 +820,7 @@ namespace Gimnasio
                     break;
                 case "DetalleCompra":
                     // Checa que los controles no estén vacios ni que las cadenas sobrepasen la longitud correspondiente
-                    if (textBox1.Text != "" && textBox2.Text != "")
+                    if (textBox1.Text != "" && textBox2.Text != "" && textBox3.Text != "")
                     {
                         band_aceptar = true;
                         this.Close();
@@ -831,7 +872,7 @@ namespace Gimnasio
 
                 case "Venta":
                     // Checa que los controles no estén vacios ni que las cadenas sobrepasen la longitud correspondiente
-                    if (textBox1.Text != "" && textBox2.Text != "" && textBox3.Text != "")
+                    if (textBox1.Text != "" && textBox2.Text != "")
                     {
                         band_aceptar = true;
                         this.Close();
@@ -843,7 +884,7 @@ namespace Gimnasio
                     break;
                 case "Compra":
                     // Checa que los controles no estén vacios ni que las cadenas sobrepasen la longitud correspondiente
-                    if (textBox1.Text != "" && textBox2.Text != "" && textBox3.Text != "")
+                    if (textBox1.Text != "" && textBox2.Text != "")
                     {
                         band_aceptar = true;
                         this.Close();
@@ -990,14 +1031,14 @@ namespace Gimnasio
         /// <summary>
         /// Método para llenar el combobox con los detalles de venta existentes en la tabla.
         /// </summary>
-        private void llenaComboDetallesVenta()
+        private void llenaComboVenta()
         {
 
             // Se abre la conexion con la base de datos
             SqlConnection connection = Conexion.Conectar();
 
             // Se crea la consulta para obtener la tabla de profesor
-            string query = "SELECT IdDetalleVenta FROM gimnasio.DetalleVenta";
+            string query = "SELECT IdVenta FROM gimnasio.Venta WHERE Total IS NULL";
 
             // Se crea el comando y se ejecuta
             SqlCommand command = new SqlCommand(query, connection);
@@ -1010,9 +1051,9 @@ namespace Gimnasio
 
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
-                string detVenta = dataGridView1.Rows[i].Cells[0].Value.ToString();
-                cbDetalleVenta.Items.Add(detVenta);
-                listaDetVenta.Add(detVenta);
+                string venta = dataGridView1.Rows[i].Cells[0].Value.ToString();
+                cbVenta.Items.Add(venta);
+                listaVenta.Add(venta);
             }
 
         }
@@ -1020,14 +1061,14 @@ namespace Gimnasio
         /// <summary>
         /// Método para llenar el combobox con los detalles de compra existentes en la tabla.
         /// </summary>
-        private void llenaComboDetallesCompra()
+        private void llenaComboCompra()
         {
 
             // Se abre la conexion con la base de datos
             SqlConnection connection = Conexion.Conectar();
 
             // Se crea la consulta para obtener la tabla de profesor
-            string query = "SELECT IdDetalleCompra FROM gimnasio.DetalleCompra";
+            string query = "SELECT IdCompra FROM gimnasio.Compra WHERE Total IS NULL";
 
             // Se crea el comando y se ejecuta
             SqlCommand command = new SqlCommand(query, connection);
@@ -1040,9 +1081,9 @@ namespace Gimnasio
 
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
-                string detCompra = dataGridView1.Rows[i].Cells[0].Value.ToString();
-                cbDetalleCompra.Items.Add(detCompra);
-                listaDetCompra.Add(detCompra);
+                string compra = dataGridView1.Rows[i].Cells[0].Value.ToString();
+                cbCompra.Items.Add(compra);
+                listaCompra.Add(compra);
             }
 
         }
@@ -1074,6 +1115,33 @@ namespace Gimnasio
 
         }
 
+        private void llenaComboArticulo()
+        {
+
+            // Se abre la conexion con la base de datos
+            SqlConnection connection = Conexion.Conectar();
+
+            // Se crea la consulta para obtener la tabla de profesor
+            string query = "SELECT IdArticulo, Nombre FROM gimnasio.Articulo";
+
+            // Se crea el comando y se ejecuta
+            SqlCommand command = new SqlCommand(query, connection);
+
+            // Se obtiene la informacion de la tabla a partir del comando
+            SqlDataAdapter data = new SqlDataAdapter(command);
+            DataTable dataTable = new DataTable();
+            data.Fill(dataTable);
+            dataGridView1.DataSource = dataTable;
+
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                string articulo = dataGridView1.Rows[i].Cells[0].Value.ToString() +
+                     " " + dataGridView1.Rows[i].Cells[1].Value.ToString();
+                cbArticulo.Items.Add(articulo);
+                listaArticulo.Add(articulo);
+            }
+
+        }
 
         // Gets de todos los textbox 
         // Esto es para poder acceder a los textbox desde el form1 sin tener que asignar los textos a variables globales
@@ -1211,22 +1279,22 @@ namespace Gimnasio
 
         private void cbDetalleVenta_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string IdHorario = cbDetalleVenta.SelectedItem.ToString();
+            string venta = cbVenta.SelectedItem.ToString();
             switch (tablaActual)
             {
-                case "Venta":
-                    Textbox2.Text = IdHorario.Substring(0, 1);
+                case "DetalleVenta":
+                    Textbox1.Text = venta.Split(' ')[0];
                     break;
             }
         }
 
         private void cbDetalleCompra_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string IdHorario = cbDetalleCompra.SelectedItem.ToString();
+            string compra = cbCompra.SelectedItem.ToString();
             switch (tablaActual)
             {
-                case "Compra":
-                    Textbox2.Text = IdHorario.Substring(0, 1);
+                case "DetalleCompra":
+                    Textbox1.Text = compra.Split(' ')[0];
                     break;
             }
         }
@@ -1238,6 +1306,20 @@ namespace Gimnasio
             {
                 case "Pago":
                     Textbox1.Text = IdHorario.Trim();
+                    break;
+            }
+        }
+
+        private void cbArticulo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string articulo = cbArticulo.SelectedItem.ToString();
+            switch (tablaActual)
+            {
+                case "DetalleCompra":
+                    Textbox2.Text = articulo.Split(' ')[0];
+                    break;
+                case "DetalleVenta":
+                    Textbox2.Text = articulo.Split(' ')[0];
                     break;
             }
         }

@@ -49,9 +49,10 @@
             this.cbEmpleados = new System.Windows.Forms.ComboBox();
             this.cbClientes = new System.Windows.Forms.ComboBox();
             this.cbClases = new System.Windows.Forms.ComboBox();
-            this.cbDetalleVenta = new System.Windows.Forms.ComboBox();
-            this.cbDetalleCompra = new System.Windows.Forms.ComboBox();
+            this.cbVenta = new System.Windows.Forms.ComboBox();
+            this.cbCompra = new System.Windows.Forms.ComboBox();
             this.cbSuscripcion = new System.Windows.Forms.ComboBox();
+            this.cbArticulo = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -233,23 +234,23 @@
             this.cbClases.TabIndex = 20;
             this.cbClases.SelectedIndexChanged += new System.EventHandler(this.cbClases_SelectedIndexChanged);
             // 
-            // cbDetalleVenta
+            // cbVenta
             // 
-            this.cbDetalleVenta.FormattingEnabled = true;
-            this.cbDetalleVenta.Location = new System.Drawing.Point(16, 417);
-            this.cbDetalleVenta.Name = "cbDetalleVenta";
-            this.cbDetalleVenta.Size = new System.Drawing.Size(135, 21);
-            this.cbDetalleVenta.TabIndex = 21;
-            this.cbDetalleVenta.SelectedIndexChanged += new System.EventHandler(this.cbDetalleVenta_SelectedIndexChanged);
+            this.cbVenta.FormattingEnabled = true;
+            this.cbVenta.Location = new System.Drawing.Point(16, 417);
+            this.cbVenta.Name = "cbVenta";
+            this.cbVenta.Size = new System.Drawing.Size(135, 21);
+            this.cbVenta.TabIndex = 21;
+            this.cbVenta.SelectedIndexChanged += new System.EventHandler(this.cbDetalleVenta_SelectedIndexChanged);
             // 
-            // cbDetalleCompra
+            // cbCompra
             // 
-            this.cbDetalleCompra.FormattingEnabled = true;
-            this.cbDetalleCompra.Location = new System.Drawing.Point(174, 259);
-            this.cbDetalleCompra.Name = "cbDetalleCompra";
-            this.cbDetalleCompra.Size = new System.Drawing.Size(135, 21);
-            this.cbDetalleCompra.TabIndex = 22;
-            this.cbDetalleCompra.SelectedIndexChanged += new System.EventHandler(this.cbDetalleCompra_SelectedIndexChanged);
+            this.cbCompra.FormattingEnabled = true;
+            this.cbCompra.Location = new System.Drawing.Point(174, 259);
+            this.cbCompra.Name = "cbCompra";
+            this.cbCompra.Size = new System.Drawing.Size(135, 21);
+            this.cbCompra.TabIndex = 22;
+            this.cbCompra.SelectedIndexChanged += new System.EventHandler(this.cbDetalleCompra_SelectedIndexChanged);
             // 
             // cbSuscripcion
             // 
@@ -260,14 +261,24 @@
             this.cbSuscripcion.TabIndex = 23;
             this.cbSuscripcion.SelectedIndexChanged += new System.EventHandler(this.cbSuscripcion_SelectedIndexChanged);
             // 
+            // cbArticulo
+            // 
+            this.cbArticulo.FormattingEnabled = true;
+            this.cbArticulo.Location = new System.Drawing.Point(174, 340);
+            this.cbArticulo.Name = "cbArticulo";
+            this.cbArticulo.Size = new System.Drawing.Size(135, 21);
+            this.cbArticulo.TabIndex = 24;
+            this.cbArticulo.SelectedIndexChanged += new System.EventHandler(this.cbArticulo_SelectedIndexChanged);
+            // 
             // Formulario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.cbArticulo);
             this.Controls.Add(this.cbSuscripcion);
-            this.Controls.Add(this.cbDetalleCompra);
-            this.Controls.Add(this.cbDetalleVenta);
+            this.Controls.Add(this.cbCompra);
+            this.Controls.Add(this.cbVenta);
             this.Controls.Add(this.cbClases);
             this.Controls.Add(this.cbClientes);
             this.Controls.Add(this.cbEmpleados);
@@ -322,8 +333,9 @@
         private System.Windows.Forms.ComboBox cbEmpleados;
         private System.Windows.Forms.ComboBox cbClientes;
         private System.Windows.Forms.ComboBox cbClases;
-        private System.Windows.Forms.ComboBox cbDetalleVenta;
-        private System.Windows.Forms.ComboBox cbDetalleCompra;
+        private System.Windows.Forms.ComboBox cbVenta;
+        private System.Windows.Forms.ComboBox cbCompra;
         private System.Windows.Forms.ComboBox cbSuscripcion;
+        private System.Windows.Forms.ComboBox cbArticulo;
     }
 }

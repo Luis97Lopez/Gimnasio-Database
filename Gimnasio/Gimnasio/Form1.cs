@@ -57,31 +57,10 @@ namespace Gimnasio
         private void btn_Insertar_Click(object sender, EventArgs e)
         {
             //Checa si se encuentra en la pestaña ¨DetalleVenta¨ o ¨DetalleCompra¨
-            if (tabControl_Tablas.SelectedTab.Text == "DetalleVenta" || tabControl_Tablas.SelectedTab.Text == "DetalleCompra")
-            {
-                //Pide confirmacion para insertar
-                if (MessageBox.Show("Despues de insertar, este registro no se podra modificar o eliminar \n\nDesea continuar?", "Advertencia", MessageBoxButtons.OKCancel) == DialogResult.OK)
-                {
-                    // Se crea una lista de strings para el metodo inserta
-                    List<string> lista = new List<string>();
-                    // Se crea el formulario para insertar un nuevo registro en la Tabla que esté seleccionada
-                    Formulario form_agregar = new Formulario(tabControl_Tablas.SelectedTab.Text);
-                    form_agregar.Text = "Insertar " + tabControl_Tablas.SelectedTab.Text;
-                    form_agregar.ShowDialog();
-
-                    if (form_agregar.band_aceptar) // Si ya se hizo click en aceptar en el formulario
-                    {
-                        actualiza_lista_de_datos_insertar(lista, form_agregar);
-
-                        inserta_en_DB(lista);
-                        actualiza_grid(tabControl_Tablas.SelectedTab.Text); // Actualiza
-
-                        // Limpia y cierra el formulario
-                        form_agregar.Dispose();
-                    }
-                }
-            }
-            else
+            if ((tabControl_Tablas.SelectedTab.Text != "DetalleVenta" && 
+                tabControl_Tablas.SelectedTab.Text != "DetalleCompra") || 
+                MessageBox.Show("Después de insertar, este registro no se podrá modificar o eliminar." +
+                "\n\n¿Desea continuar?", "Advertencia", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 // Se crea una lista de strings para el metodo inserta
                 List<string> lista = new List<string>();
@@ -100,7 +79,6 @@ namespace Gimnasio
                     // Limpia y cierra el formulario
                     form_agregar.Dispose();
                 }
-
             }
         }
 
@@ -141,7 +119,7 @@ namespace Gimnasio
             }
             else
             {
-                MessageBox.Show("NOTIFICACION - Los datos no se pueden modificar");
+                MessageBox.Show("Los datos no se pueden modificar", "Notificación");
             }
         }
 
@@ -163,7 +141,7 @@ namespace Gimnasio
             }
             else
             {
-                MessageBox.Show("NOTIFICACION - Los datos no se pueden eliminar");
+                MessageBox.Show("Los datos no se pueden eliminar", "Notificación");
             }
         }
 
@@ -246,10 +224,10 @@ namespace Gimnasio
                     v = "(IdSuscripcion, IdCliente, Total, Fecha) VALUES(@Suscripcion, @Cliente, @Total, @Fecha)";
                     break;
                 case "DetalleVenta":
-                    v = "(IdArticulo, Cantidad) VALUES(@Articulo, @Cantidad)";
+                    v = "(IdVenta, IdArticulo, Cantidad) VALUES(@IdVenta, @IdArticulo, @Cantidad)";
                     break;
                 case "DetalleCompra":
-                    v = "(IdArticulo, Cantidad) VALUES(@Articulo, @Cantidad)";
+                    v = "(IdCompra, IdArticulo, Cantidad) VALUES(@IdCompra, @IdArticulo, @Cantidad)";
                     break;
                 case "Empleado":
                     v = "(IdHorario, Nombre, Celular, Sueldo, Dias) VALUES (@IdHorario, @Nombre, @Celular, @Sueldo, @Dias)";
@@ -261,10 +239,10 @@ namespace Gimnasio
                     v = "(IdClase, IdCliente) VALUES (@IdClase, @IdCliente)";
                     break;
                 case "Venta":
-                    v = "(IdEmpleado, IdDetalleVenta, Fecha) VALUES (@IdEmpleado, @IdDetalleVenta, @Fecha)";
+                    v = "(IdEmpleado, Fecha) VALUES (@IdEmpleado, @Fecha)";
                     break;
                 case "Compra":
-                    v = "(IdEmpleado, IdDetalleCompra, Fecha) VALUES (@IdEmpleado, @IdDetalleCompra, @Fecha)";
+                    v = "(IdEmpleado, Fecha) VALUES (@IdEmpleado, @Fecha)";
                     break;
             }
 
@@ -292,6 +270,7 @@ namespace Gimnasio
                 case "Pago":
                     v = "SET IdSuscripcion = @Suscripcion, IdCliente = @Cliente, Total = @Total, Fecha = @Fecha WHERE IdPago = @IdPago";
                     break;
+
                 case "DetalleVenta":
                     v = "SET IdArticulo = @Articulo, Cantidad = @Cantidad WHERE IdDetalleVenta = @IdDetalleVenta";
                     break;
@@ -309,10 +288,10 @@ namespace Gimnasio
                     v = "SET IdClase = @IdClase, IdCliente = @IdCLiente WHERE IdInscripcion = @IdInscripcion";
                     break;
                 case "Venta":
-                    v = "SET IdEmpleado = @IdEmpleado, IdDetalleVenta = @IdDetalleVenta, Fecha = @Fecha  WHERE IdVenta = @IdVenta";
+                    v = "SET IdEmpleado = @IdEmpleado, Fecha = @Fecha  WHERE IdVenta = @IdVenta";
                     break;
                 case "Compra":
-                    v = "SET IdEmpleado = @IdEmpleado, IdDetalleCompra = @IdDetalleCompra, Fecha = @Fecha  WHERE IdCompra = @IdCompra";
+                    v = "SET IdEmpleado = @IdEmpleado, Fecha = @Fecha  WHERE IdCompra = @IdCompra";
                     break;
             }
 
@@ -406,10 +385,12 @@ namespace Gimnasio
                 case "DetalleVenta":
                     lista.Add(formulario.Textbox1.Text);
                     lista.Add(formulario.Textbox2.Text);
+                    lista.Add(formulario.Textbox3.Text);
                     break;
                 case "DetalleCompra":
                     lista.Add(formulario.Textbox1.Text);
                     lista.Add(formulario.Textbox2.Text);
+                    lista.Add(formulario.Textbox3.Text);
                     break;
 
                 case "Empleado":
@@ -435,12 +416,10 @@ namespace Gimnasio
                 case "Venta":
                     lista.Add(formulario.Textbox1.Text);
                     lista.Add(formulario.Textbox2.Text);
-                    lista.Add(formulario.Textbox3.Text);
                     break;
                 case "Compra":
                     lista.Add(formulario.Textbox1.Text);
                     lista.Add(formulario.Textbox2.Text);
-                    lista.Add(formulario.Textbox3.Text);
                     break;
             }
         }
@@ -489,12 +468,14 @@ namespace Gimnasio
                     #endregion
                     break;
                 case "DetalleVenta":
-                    formulario.Textbox1.Text = dataGridView.SelectedCells[1].Value.ToString();
-                    formulario.Textbox2.Text = dataGridView.SelectedCells[2].Value.ToString();
+                    formulario.Textbox1.Text = dataGridView.SelectedCells[0].Value.ToString();
+                    formulario.Textbox2.Text = dataGridView.SelectedCells[1].Value.ToString();
+                    formulario.Textbox3.Text = dataGridView.SelectedCells[2].Value.ToString();
                     break;
                 case "DetalleCompra":
-                    formulario.Textbox1.Text = dataGridView.SelectedCells[1].Value.ToString();
-                    formulario.Textbox2.Text = dataGridView.SelectedCells[2].Value.ToString();
+                    formulario.Textbox1.Text = dataGridView.SelectedCells[0].Value.ToString();
+                    formulario.Textbox2.Text = dataGridView.SelectedCells[1].Value.ToString();
+                    formulario.Textbox3.Text = dataGridView.SelectedCells[2].Value.ToString();
                     break;
 
                 case "Empleado":
@@ -531,33 +512,31 @@ namespace Gimnasio
                     break;
                 case "Venta":
                     formulario.Textbox1.Text = dataGridView.SelectedCells[1].Value.ToString();
-                    formulario.Textbox2.Text = dataGridView.SelectedCells[2].Value.ToString();
                     #region Quita el formato de fecha y lo convierte a cadena
                     string fecha2 = "";
-                    string fechaAux2 = dataGridView.SelectedCells[3].Value.ToString();
+                    string fechaAux2 = dataGridView.SelectedCells[2].Value.ToString();
                     fecha2 = fechaAux2.Substring(0, 10);
                     fechaAux2 = fecha2.Replace("/", "");
 
-                    fecha2 = fechaAux2.Substring(4);
-                    fecha2 += fechaAux2.Substring(2, 2);
+                    fecha2 = fechaAux2.Substring(4) + "-";
+                    fecha2 += fechaAux2.Substring(2, 2) + "-";
                     fecha2 += fechaAux2.Substring(0, 2);
                     #endregion
-                    formulario.Textbox3.Text = fecha2;
+                    formulario.Textbox2.Text = fecha2;
                     break;
                 case "Compra":
                     formulario.Textbox1.Text = dataGridView.SelectedCells[1].Value.ToString();
-                    formulario.Textbox2.Text = dataGridView.SelectedCells[2].Value.ToString();
                     #region Quita el formato de fecha y lo convierte a cadena
                     string fecha3 = "";
-                    string fechaAux3 = dataGridView.SelectedCells[3].Value.ToString();
+                    string fechaAux3 = dataGridView.SelectedCells[2].Value.ToString();
                     fecha3 = fechaAux3.Substring(0, 10);
                     fechaAux3 = fecha3.Replace("/", "");
 
-                    fecha3 = fechaAux3.Substring(4);
-                    fecha3 += fechaAux3.Substring(2, 2);
+                    fecha3 = fechaAux3.Substring(4) + "-";
+                    fecha3 += fechaAux3.Substring(2, 2) + "-";
                     fecha3 += fechaAux3.Substring(0, 2);
                     #endregion
-                    formulario.Textbox3.Text = fecha3;
+                    formulario.Textbox2.Text = fecha3;
                     break;
 
 
@@ -601,10 +580,12 @@ namespace Gimnasio
                 case "DetalleVenta":
                     lista.Add(formulario.Textbox1.Text);
                     lista.Add(formulario.Textbox2.Text);
+                    lista.Add(formulario.Textbox3.Text);
                     break;
                 case "DetalleCompra":
                     lista.Add(formulario.Textbox1.Text);
                     lista.Add(formulario.Textbox2.Text);
+                    lista.Add(formulario.Textbox3.Text);
                     break;
                     
                 case "Empleado":
@@ -630,12 +611,10 @@ namespace Gimnasio
                 case "Venta":
                     lista.Add(formulario.Textbox1.Text);
                     lista.Add(formulario.Textbox2.Text);
-                    lista.Add(formulario.Textbox3.Text);
                     break;
                 case "Compra":
                     lista.Add(formulario.Textbox1.Text);
                     lista.Add(formulario.Textbox2.Text);
-                    lista.Add(formulario.Textbox3.Text);
                     break;
             }
         }
@@ -673,12 +652,14 @@ namespace Gimnasio
                     comando.Parameters.AddWithValue("@Fecha", datos[4]);
                     break;
                 case "DetalleVenta":
-                    comando.Parameters.AddWithValue("@Articulo", datos[1]);
-                    comando.Parameters.AddWithValue("@Cantidad", datos[2]);
+                    comando.Parameters.AddWithValue("@IdVenta", datos[1]);
+                    comando.Parameters.AddWithValue("@IdArticulo", datos[2]);
+                    comando.Parameters.AddWithValue("@Cantidad", datos[3]);
                     break;
                 case "DetalleCompra":
-                    comando.Parameters.AddWithValue("@Articulo", datos[1]);
-                    comando.Parameters.AddWithValue("@Cantidad", datos[2]);
+                    comando.Parameters.AddWithValue("@IdCompra", datos[1]);
+                    comando.Parameters.AddWithValue("@IdArticulo", datos[2]);
+                    comando.Parameters.AddWithValue("@Cantidad", datos[3]);
                     break;
                 
                 case "Empleado":
@@ -703,13 +684,11 @@ namespace Gimnasio
                     break;
                 case "Venta":
                     comando.Parameters.AddWithValue("@IdEmpleado", datos[1]);
-                    comando.Parameters.AddWithValue("@IdDetalleVenta", datos[2]);
-                    comando.Parameters.AddWithValue("@Fecha", datos[3]);
+                    comando.Parameters.AddWithValue("@Fecha", datos[2]);
                     break;
                 case "Compra":
                     comando.Parameters.AddWithValue("@IdEmpleado", datos[1]);
-                    comando.Parameters.AddWithValue("@IdDetalleCompra", datos[2]);
-                    comando.Parameters.AddWithValue("@Fecha", datos[3]);
+                    comando.Parameters.AddWithValue("@Fecha", datos[2]);
                     break;
 
             }
@@ -751,14 +730,14 @@ namespace Gimnasio
                     comando.Parameters.AddWithValue("@IdPago", dataGridView.SelectedCells[0].Value.ToString());
                     break;
                 case "DetalleVenta":
-                    comando.Parameters.AddWithValue("@Articulo", datos[1]);
-                    comando.Parameters.AddWithValue("@Cantidad", datos[2]);
-                    comando.Parameters.AddWithValue("@IdDetalleVenta", dataGridView.SelectedCells[0].Value.ToString());
+                    comando.Parameters.AddWithValue("@IdVenta", datos[1]);
+                    comando.Parameters.AddWithValue("@Articulo", datos[2]);
+                    comando.Parameters.AddWithValue("@Cantidad", datos[3]);
                     break;
                 case "DetalleCompra":
-                    comando.Parameters.AddWithValue("@Articulo", datos[1]);
-                    comando.Parameters.AddWithValue("@Cantidad", datos[2]);
-                    comando.Parameters.AddWithValue("@IdDetalleCompra", dataGridView.SelectedCells[0].Value.ToString());
+                    comando.Parameters.AddWithValue("@IdCompra", datos[1]);
+                    comando.Parameters.AddWithValue("@Articulo", datos[2]);
+                    comando.Parameters.AddWithValue("@Cantidad", datos[3]);
                     break;
                 
                 case "Empleado":
@@ -786,14 +765,12 @@ namespace Gimnasio
                     break;
                 case "Venta":
                     comando.Parameters.AddWithValue("@IdEmpleado", datos[1]);
-                    comando.Parameters.AddWithValue("@IdDetalleVenta", datos[2]);
-                    comando.Parameters.AddWithValue("@Fecha", datos[3]);
+                    comando.Parameters.AddWithValue("@Fecha", datos[2]);
                     comando.Parameters.AddWithValue("@IdVenta", dataGridView.SelectedCells[0].Value.ToString());
                     break;
                 case "Compra":
                     comando.Parameters.AddWithValue("@IdEmpleado", datos[1]);
-                    comando.Parameters.AddWithValue("@IdDetalleCompra", datos[2]);
-                    comando.Parameters.AddWithValue("@Fecha", datos[3]);
+                    comando.Parameters.AddWithValue("@Fecha", datos[2]);
                     comando.Parameters.AddWithValue("@IdCompra", dataGridView.SelectedCells[0].Value.ToString());
                     break;
 
@@ -861,6 +838,34 @@ namespace Gimnasio
                             "INNER JOIN gimnasio.Horario h " +
                             "ON h.IdHorario = e.IdHorario";
                     
+                    break;
+                case "Venta":
+                    query = "SELECT v.IdVenta, (CAST(e.IdEmpleado AS VARCHAR(100)) + ' ' + e.Nombre) AS Empleado, " +
+                        "v.Fecha, v.Total " +
+                        "FROM gimnasio.Venta v " +
+                        "INNER JOIN gimnasio.Empleado e " +
+                        "ON e.IdEmpleado = v.IdEmpleado";
+                    break;
+                case "Compra":
+                    query = "SELECT v.IdCompra, (CAST(e.IdEmpleado AS VARCHAR(100)) + ' ' + e.Nombre) AS Empleado, " +
+                        "v.Fecha, v.Total " +
+                        "FROM gimnasio.Compra v " +
+                        "INNER JOIN gimnasio.Empleado e " +
+                        "ON e.IdEmpleado = v.IdEmpleado";
+                    break;
+                case "DetalleVenta":
+                    query = "SELECT v.IdVenta, (CAST(a.IdArticulo AS VARCHAR(100)) + ' ' + a.Nombre) AS Articulo, " +
+                        "v.Cantidad, v.Subtotal " +
+                        "FROM gimnasio.DetalleVenta v " +
+                        "INNER JOIN gimnasio.Articulo a " +
+                        "ON v.IdArticulo = a.IdArticulo";
+                    break;
+                case "DetalleCompra":
+                    query = "SELECT v.IdCompra, (CAST(a.IdArticulo AS VARCHAR(100)) + ' ' + a.Nombre) AS Articulo, " +
+                        "v.Cantidad, v.Subtotal " +
+                        "FROM gimnasio.DetalleCompra v " +
+                        "INNER JOIN gimnasio.Articulo a " +
+                        "ON v.IdArticulo = a.IdArticulo";
                     break;
             }
 
