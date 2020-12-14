@@ -64,15 +64,18 @@ CREATE TABLE gimnasio.Compra(
 	REFERENCES gimnasio.Empleado(IdEmpleado),
 );
 
+
 CREATE TABLE gimnasio.DetalleVenta(
 	IdVenta BIGINT NOT NULL,
 	IdArticulo BIGINT NOT NULL,
 	Cantidad INT NOT NULL,
 	Subtotal FLOAT,
 
+	CONSTRAINT PK_DetalleVenta PRIMARY KEY (IdVenta),
 	CONSTRAINT FK_Articulo1 FOREIGN KEY (IdArticulo)
 	REFERENCES gimnasio.Articulo(IdArticulo)
 );
+
 
 CREATE TABLE gimnasio.DetalleCompra(
 	IdCompra BIGINT NOT NULL,
@@ -80,6 +83,7 @@ CREATE TABLE gimnasio.DetalleCompra(
 	Cantidad INT NOT NULL,
 	Subtotal FLOAT,
 
+	CONSTRAINT PK_DetalleCompra PRIMARY KEY (IdCompra),
 	CONSTRAINT FK_Articulo2 FOREIGN KEY (IdArticulo)
 	REFERENCES gimnasio.Articulo(IdArticulo)
 );
@@ -246,18 +250,25 @@ AS
 BEGIN
 	DECLARE @IdArticulo BIGINT;
 	DECLARE @Cantidad INT;
-	DECLARE @IdDetalleCompra BIGINT;
+	DECLARE @IdCompra BIGINT;
+	DECLARE @Precio FLOAT;
 
-	SELECT	@IdDetalleCompra=IdDetalleCompra, 
+	SELECT	@IdCompra=IdCompra, 
 			@Cantidad=Cantidad, 
 			@IdArticulo=IdArticulo 
 	FROM inserted;
 
+	SELECT @Precio=Precio
+	FROM gimnasio.Articulo
+	WHERE IdArticulo=@IdArticulo;
 
 	UPDATE gimnasio.DetalleCompra
-	SET Total = (@Cantidad) * (SELECT Precio FROM gimnasio.Articulo WHERE IdArticulo=@IdArticulo)
-	WHERE IdDetalleCompra = (@IdDetalleCompra)
+	SET Subtotal = (@Cantidad) * (@Precio)
+	WHERE IdCompra=@IdCompra;
 
+	UPDATE gimnasio.Compra
+	SET Total = (@Cantidad) * (@Precio) * (1.16)
+	WHERE IdCompra=@IdCompra;
 END
 
 
@@ -268,18 +279,25 @@ AS
 BEGIN
 	DECLARE @IdArticulo BIGINT;
 	DECLARE @Cantidad INT;
-	DECLARE @IdDetalleVenta BIGINT;
+	DECLARE @IdVenta BIGINT;
+	DECLARE @Precio FLOAT;
 
-	SELECT	@IdDetalleVenta=IdDetalleVenta, 
+	SELECT	@IdVenta=IdVenta, 
 			@Cantidad=Cantidad, 
 			@IdArticulo=IdArticulo 
 	FROM inserted;
 
+	SELECT @Precio=Precio
+	FROM gimnasio.Articulo
+	WHERE IdArticulo=@IdArticulo;
 
 	UPDATE gimnasio.DetalleVenta
-	SET Total = (@Cantidad) * (SELECT Precio FROM gimnasio.Articulo WHERE IdArticulo=@IdArticulo)
-	WHERE IdDetalleVenta = (@IdDetalleVenta)
+	SET Subtotal = (@Cantidad) * (@Precio)
+	WHERE IdVenta=@IdVenta;
 
+	UPDATE gimnasio.Venta
+	SET Total = (@Cantidad) * (@Precio) * (1.16)
+	WHERE IdVenta=@IdVenta;
 END
 
 
