@@ -15,36 +15,6 @@ CREATE TABLE gimnasio.Articulo(
 
 );
 
-DROP TABLE gimnasio.DetalleVenta;
-CREATE TABLE gimnasio.DetalleVenta(
-
-	IdDetalleVenta BIGINT IDENTITY(1,1) NOT NULL,
-	IdArticulo BIGINT NOT NULL,
-	Cantidad INT NOT NULL,
-	Total FLOAT,
-
-	CONSTRAINT PK_DetalleVenta PRIMARY KEY (IdDetalleVenta),
-	CONSTRAINT FK_Articulo1 FOREIGN KEY (IdArticulo)
-	REFERENCES gimnasio.Articulo(IdArticulo)
-
-);
-
-
-DROP TABLE gimnasio.DetalleCompra;
-CREATE TABLE gimnasio.DetalleCompra(
-
-	IdDetalleCompra BIGINT IDENTITY(1,1) NOT NULL,
-	IdArticulo BIGINT NOT NULL,
-	Cantidad INT NOT NULL,
-	Total FLOAT,
-
-	CONSTRAINT PK_DetalleCompra PRIMARY KEY (IdDetalleCompra),
-	CONSTRAINT FK_Articulo2 FOREIGN KEY (IdArticulo)
-	REFERENCES gimnasio.Articulo(IdArticulo)
-
-);
-
-
 CREATE TABLE gimnasio.Horario(
 
 	IdHorario BIGINT IDENTITY(1,1) NOT NULL,
@@ -70,38 +40,50 @@ CREATE TABLE gimnasio.Empleado(
 
 );
 
-DROP TABLE gimnasio.Venta;
 CREATE TABLE gimnasio.Venta(
 
 	IdVenta BIGINT IDENTITY(1,1) NOT NULL,
 	IdEmpleado BIGINT NOT NULL,
-	IdDetalleVenta BIGINT NOT NULL,
 	Fecha DATE NOT NULL,
+	Total FLOAT,
 
 	CONSTRAINT PK_Venta PRIMARY KEY (IdVenta),
 	CONSTRAINT FK_Empleado1 FOREIGN KEY (IdEmpleado)
 	REFERENCES gimnasio.Empleado(IdEmpleado),
-	CONSTRAINT FK_DetalleVenta FOREIGN KEY (IdDetalleVenta)
-	REFERENCES gimnasio.DetalleVenta(IdDetalleVenta)
-
 );
 
-DROP TABLE gimnasio.Compra;
 CREATE TABLE gimnasio.Compra(
 
 	IdCompra BIGINT IDENTITY(1,1) NOT NULL,
 	IdEmpleado BIGINT NOT NULL,
-	IdDetalleCompra BIGINT NOT NULL,
 	Fecha DATE NOT NULL,
+	Total FLOAT,
 
 	CONSTRAINT PK_Compra PRIMARY KEY (IdCompra),
 	CONSTRAINT FK_Empleado2 FOREIGN KEY (IdEmpleado)
 	REFERENCES gimnasio.Empleado(IdEmpleado),
-	CONSTRAINT FK_DetalleCompra FOREIGN KEY (IdDetalleCompra)
-	REFERENCES gimnasio.DetalleCompra(IdDetalleCompra)
-
 );
-*/
+
+CREATE TABLE gimnasio.DetalleVenta(
+	IdVenta BIGINT NOT NULL,
+	IdArticulo BIGINT NOT NULL,
+	Cantidad INT NOT NULL,
+	Subtotal FLOAT,
+
+	CONSTRAINT FK_Articulo1 FOREIGN KEY (IdArticulo)
+	REFERENCES gimnasio.Articulo(IdArticulo)
+);
+
+CREATE TABLE gimnasio.DetalleCompra(
+	IdCompra BIGINT NOT NULL,
+	IdArticulo BIGINT NOT NULL,
+	Cantidad INT NOT NULL,
+	Subtotal FLOAT,
+
+	CONSTRAINT FK_Articulo2 FOREIGN KEY (IdArticulo)
+	REFERENCES gimnasio.Articulo(IdArticulo)
+);
+
 
 CREATE TABLE gimnasio.Cliente(
 
