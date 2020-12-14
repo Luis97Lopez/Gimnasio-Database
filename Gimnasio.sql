@@ -15,6 +15,7 @@ CREATE TABLE gimnasio.Articulo(
 
 );
 
+DROP TABLE gimnasio.DetalleVenta;
 CREATE TABLE gimnasio.DetalleVenta(
 
 	IdDetalleVenta BIGINT IDENTITY(1,1) NOT NULL,
@@ -28,6 +29,8 @@ CREATE TABLE gimnasio.DetalleVenta(
 
 );
 
+
+DROP TABLE gimnasio.DetalleCompra;
 CREATE TABLE gimnasio.DetalleCompra(
 
 	IdDetalleCompra BIGINT IDENTITY(1,1) NOT NULL,
@@ -40,6 +43,7 @@ CREATE TABLE gimnasio.DetalleCompra(
 	REFERENCES gimnasio.Articulo(IdArticulo)
 
 );
+
 
 CREATE TABLE gimnasio.Horario(
 
@@ -66,6 +70,7 @@ CREATE TABLE gimnasio.Empleado(
 
 );
 
+DROP TABLE gimnasio.Venta;
 CREATE TABLE gimnasio.Venta(
 
 	IdVenta BIGINT IDENTITY(1,1) NOT NULL,
@@ -81,6 +86,7 @@ CREATE TABLE gimnasio.Venta(
 
 );
 
+DROP TABLE gimnasio.Compra;
 CREATE TABLE gimnasio.Compra(
 
 	IdCompra BIGINT IDENTITY(1,1) NOT NULL,
@@ -95,6 +101,7 @@ CREATE TABLE gimnasio.Compra(
 	REFERENCES gimnasio.DetalleCompra(IdDetalleCompra)
 
 );
+*/
 
 CREATE TABLE gimnasio.Cliente(
 
