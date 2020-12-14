@@ -130,12 +130,20 @@ namespace Gimnasio
                 // Primero checa que la fila entera esté seleccionada (en este caso selectedcells debe de ser 4 contando el id)
                 if (dataGridView.SelectedRows.Count > 0)
                 {
-                    // Pide la confirmacion para eliminar al profesor
-                    if (MessageBox.Show("Se va a eliminar " + dataGridView.SelectedCells[0].Value.ToString(),
-                                        "Eliminar", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                    if ((tabControl_Tablas.SelectedTab.Text != "Venta" 
+                        && tabControl_Tablas.SelectedTab.Text != "Compra")
+                        || checa_eliminar()) {
+                        // Pide la confirmacion para eliminar al profesor
+                        if (MessageBox.Show("Se va a eliminar " + dataGridView.SelectedCells[0].Value.ToString(),
+                                            "Eliminar", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                        {
+                            elimina_en_DB(tabControl_Tablas.SelectedTab.Text);
+                            actualiza_grid(tabControl_Tablas.SelectedTab.Text);
+                        }
+                    }
+                    else
                     {
-                        elimina_en_DB(tabControl_Tablas.SelectedTab.Text);
-                        actualiza_grid(tabControl_Tablas.SelectedTab.Text);
+                        MessageBox.Show("Los datos no se pueden eliminar", "Notificación");
                     }
                 }
             }
@@ -143,6 +151,11 @@ namespace Gimnasio
             {
                 MessageBox.Show("Los datos no se pueden eliminar", "Notificación");
             }
+        }
+
+        private bool checa_eliminar()
+        {
+            return dataGridView.SelectedCells[3].Value.ToString() == "";
         }
 
         // -------------------------- FUNCIONES CON LA DATABASE --------------------------
