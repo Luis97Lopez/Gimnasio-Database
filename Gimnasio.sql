@@ -71,7 +71,8 @@ CREATE TABLE gimnasio.DetalleVenta(
 	Cantidad INT NOT NULL,
 	Subtotal FLOAT,
 
-	CONSTRAINT PK_DetalleVenta PRIMARY KEY (IdVenta),
+	CONSTRAINT FK_Venta FOREIGN KEY (IdVenta)
+	REFERENCES gimnasio.Venta(IdVenta),
 	CONSTRAINT FK_Articulo1 FOREIGN KEY (IdArticulo)
 	REFERENCES gimnasio.Articulo(IdArticulo)
 );
@@ -83,7 +84,8 @@ CREATE TABLE gimnasio.DetalleCompra(
 	Cantidad INT NOT NULL,
 	Subtotal FLOAT,
 
-	CONSTRAINT PK_DetalleCompra PRIMARY KEY (IdCompra),
+	CONSTRAINT FK_Compra FOREIGN KEY (IdCompra)
+	REFERENCES gimnasio.Compra(IdCompra),
 	CONSTRAINT FK_Articulo2 FOREIGN KEY (IdArticulo)
 	REFERENCES gimnasio.Articulo(IdArticulo)
 );
